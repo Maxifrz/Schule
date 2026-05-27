@@ -15,7 +15,7 @@ name: BlueChat
 options:
   bundleIdPrefix: app.bluechat
   deploymentTarget:
-    iOS: "16.0"
+    iOS: "17.0"
   createIntermediateGroups: true
 
 packages:
@@ -34,7 +34,7 @@ targets:
   BlueChat:
     type: application
     platform: iOS
-    deploymentTarget: "16.0"
+    deploymentTarget: "17.0"
     sources:
       - path: BlueChat
     info:
@@ -47,5 +47,6 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: app.bluechat
         GENERATE_INFOPLIST_FILE: NO
         TARGETED_DEVICE_FAMILY: "1,2"
-        # SwiftData (@Model) benötigt zur Laufzeit iOS 17; Deployment-Target
-        # bleibt 16 für nicht-SwiftData-Codepfade. Siehe README zur Strategie.
+        # SwiftData (@Model, @Query) und einige SwiftUI-APIs (z. B. zweiparametriges
+        # onChange, symbolEffect) sind iOS-17-only und werden hier unbedingt genutzt –
+        # daher Deployment-Target 17.0. Siehe README zur Versionsstrategie.
