@@ -112,16 +112,18 @@ cd BlueChatCore && swift test     # auf macOS
 |----------------|---------------------------------------------------|
 | Sprache        | Swift 5.9                                          |
 | UI             | SwiftUI (+ UIKit-Interop via `UIImpactFeedbackGenerator`, `UIImage`) |
-| Min. iOS       | 16.0 (App-Target); SwiftData-Pfade ab 17.0        |
+| Min. iOS       | 17.0 (App-Target; SwiftData/`@Query` zwingend)    |
 | Architektur    | MVVM + Combine                                     |
 | Bluetooth      | CoreBluetooth, `CBCentralManager` + `CBPeripheralManager` (Dual-Role) |
 | Persistenz     | SwiftData                                          |
 | Krypto         | CryptoKit: Curve25519 (Ed25519 + X25519), AES-GCM-256, HKDF, HMAC-SHA256 |
 
-> **Versionsstrategie iOS 16 vs. 17:** `@Model` (SwiftData) ist eine iOS-17-API.
-> Das Deployment-Target bleibt 16, damit Onboarding/BLE auch dort laufen; die
-> persistenz­abhängigen Codepfade sind mit `if #available(iOS 17, *)` zu
-> kapseln bzw. man hebt das Target auf 17 an, wenn SwiftData zwingend ist.
+> **Versionsstrategie:** `@Model`/`@Query` (SwiftData) sowie einzelne
+> SwiftUI-APIs (zweiparametriges `onChange`, `symbolEffect`) sind iOS-17-only
+> und werden durchgängig genutzt. Da die lokale Persistenz hier zwingend ist,
+> liegt das Deployment-Target bei **17.0** (statt iOS-16-Codepfade hinter
+> `if #available` zu kapseln). Das `BlueChatCore`-Package bleibt iOS-16-fähig,
+> da es keine SwiftData-Abhängigkeit hat.
 
 ---
 

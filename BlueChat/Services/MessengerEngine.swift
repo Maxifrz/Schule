@@ -41,6 +41,7 @@ final class MessengerEngine: ObservableObject {
     private let directory = PeerDirectory()
     private var cancellables = Set<AnyCancellable>()
     private var heartbeatTimer: AnyCancellable?
+    private var isStarted = false
 
     var displayName: String
 
@@ -58,12 +59,39 @@ final class MessengerEngine: ObservableObject {
     // MARK: - Start
 
     func start() {
+        guard !isStarted else { return } // Mehrfaches Starten vermeiden (z. B. nach Re-Onboarding).
+        isStarted = true
         wireBluetooth()
         bluetooth.start()
-        // Periodisch HELLO/HEARTBEAT senden, damit Nachbarn uns kennen.
+        NotificationService.requestAuthorization()
+        try? store.purgeExpired()
+        // Periodisch HELLO/HEARTBEAT senden, damit Nachbarn uns kennen, und
+        // abgelaufene (selbstlöschende) Nachrichten entfernen.
         heartbeatTimer = Timer.publish(every: BLE.heartbeatInterval, on: .main, in: .common)
             .autoconnect()
-            .sink { [weak self] _ in Task { @MainActor in self?.announce() } }
+            .sink { [weak self] _ in
+                Task { @MainActor in
+                    self?.announce()
+                    try? self?.store.purgeExpired()
+                }
+            }
+    }
+
+    // MARK: - Verifizierung (Schutz vor MITM)
+
+    /// Roh-Bytes des langlebigen Signing-Public-Keys eines bekannten Peers
+    /// (für die Fingerprint-Berechnung in der VerificationView).
+    func signingKeyData(for peerID: PeerID) -> Data? {
+        directory.entry(for: peerID)?.signingKey.rawRepresentation
+    }
+
+    func isVerified(_ peerID: PeerID) -> Bool {
+        store.isVerified(peerIDHex: peerID.hex)
+    }
+
+    func setVerified(_ peerID: PeerID, _ verified: Bool) {
+        try? store.setVerified(peerIDHex: peerID.hex, verified)
+        refreshPeerList()
     }
 
     // Hinweis: Die Subjects feuern auf der BLE-Queue. Da MessengerEngine
@@ -108,24 +136,36 @@ final class MessengerEngine: ObservableObject {
     // MARK: - Senden einer Chat-Nachricht (1:1)
 
     func sendText(_ text: String, to peerID: PeerID, expiresAfter: TimeInterval? = nil) {
+        let messageID = UUID()
+        let title = directory.entry(for: peerID)?.displayName ?? peerID.hex
+        let expiresAt = expiresAfter.map { Date().addingTimeInterval($0) }
+
+        // Zuerst lokal als „queued" persistieren – so überlebt die Nachricht
+        // auch, wenn der Empfänger gerade (noch) nicht erreichbar ist. Sie wird
+        // bei der nächsten Entdeckung (HELLO) automatisch erneut gesendet.
+        if let chat = try? store.chat(forDirect: peerID.hex, title: title) {
+            let record = MessageRecord(id: messageID, direction: .outgoing, senderIDHex: identity.peerID.hex,
+                                       text: text, deliveryState: .queued, expiresAt: expiresAt)
+            try? store.append(record, to: chat)
+        }
+        transmit(messageID: messageID, text: text, to: peerID, expiresAfter: expiresAfter)
+    }
+
+    /// Verschlüsselt und sendet eine bereits persistierte Nachricht. Ist der
+    /// Peer noch unbekannt, bleibt sie „queued" (Store-and-Forward).
+    private func transmit(messageID: UUID, text: String, to peerID: PeerID, expiresAfter: TimeInterval?) {
+        guard let entry = directory.entry(for: peerID) else { return }
         do {
             let content = ChatContent(body: .text(text), expiresAfter: expiresAfter)
             let plaintext = try PayloadCodec.encode(content)
 
-            guard let entry = directory.entry(for: peerID) else { return } // unbekannter Peer
             let ratchet = try sessions.establish(with: peerID, peerAgreementKey: entry.agreementKey)
             let ratchetMsg = try ratchet.encrypt(plaintext)
             try sessions.persist(peerID)
 
             // Ratchet-Metadaten (Counter) dem Ciphertext voranstellen.
             let wireCiphertext = encodeRatchetMessage(ratchetMsg)
-            let messageID = UUID()
             let packet = try factory.makeMessage(to: peerID, ciphertext: wireCiphertext, messageID: messageID, ttl: router.maxTTL, ephemeral: expiresAfter != nil, requiresAck: true)
-
-            // Lokal als ausgehende Nachricht speichern (Status queued).
-            let chat = try store.chat(forDirect: peerID.hex, title: entry.displayName)
-            let record = MessageRecord(id: messageID, direction: .outgoing, senderIDHex: identity.peerID.hex, text: text, deliveryState: .queued)
-            try store.append(record, to: chat)
 
             route(packet, preferredRecipient: peerID)
             try store.updateDeliveryState(messageID: messageID, to: .sent)
@@ -220,6 +260,12 @@ final class MessengerEngine: ObservableObject {
             directory.bind(peerID: packet.senderID, toPeripheral: pid)
             router.addNeighbor(packet.senderID)
         }
+        // Kontakt persistieren (Verifizierungsstatus bleibt erhalten), damit
+        // Name/Keys einen Neustart überdauern und verifizierte Peers erkannt werden.
+        try? store.upsertPeer(
+            peerIDHex: packet.senderID.hex, displayName: payload.displayName,
+            signingKey: payload.identitySigningKey, agreementKey: payload.identityAgreementKey
+        )
         refreshPeerList()
         flushQueuedMessages(for: packet.senderID)
     }
@@ -253,6 +299,15 @@ final class MessengerEngine: ObservableObject {
             }
             try store.append(record, to: chat)
 
+            // Lokale Benachrichtigung (kein Server/Push verfügbar).
+            let preview: String = {
+                switch content.body {
+                case .text(let t): return t
+                case .image:       return "Bild"
+                }
+            }()
+            NotificationService.notifyNewMessage(from: entry.displayName, preview: preview)
+
             // Delivery-ACK zurücksenden, falls gefordert.
             if packet.flags.contains(.requiresAck) {
                 if let ack = try? factory.makeAck(to: packet.senderID, messageID: packet.messageID, kind: .delivered, ttl: router.maxTTL) {
@@ -275,8 +330,10 @@ final class MessengerEngine: ObservableObject {
         guard let queued = try? store.queuedOutgoing() else { return }
         for record in queued where record.chat?.counterpartKey == peerID.hex {
             if let text = record.text {
-                sendText(text, to: peerID, expiresAfter: record.expiresAt.map { $0.timeIntervalSinceNow })
-                try? store.updateDeliveryState(messageID: record.id, to: .sent)
+                // Bestehenden Datensatz erneut senden (gleiche Message-ID) – kein
+                // Duplikat. Der Empfänger dedupliziert ohnehin über die Message-ID.
+                transmit(messageID: record.id, text: text, to: peerID,
+                         expiresAfter: record.expiresAt.map { $0.timeIntervalSinceNow })
             }
         }
     }
@@ -284,24 +341,32 @@ final class MessengerEngine: ObservableObject {
     // MARK: - Peer-Liste / UI
 
     private func handleConnection(_ peripheralID: UUID, connected: Bool) {
-        if !connected, let peerID = directory.peerID(forPeripheral: peripheralID) {
+        if connected {
+            // Frisch verbunden: sofort HELLO senden, damit der Erstkontakt nicht
+            // bis zum nächsten Heartbeat (30 s) warten muss.
+            announce()
+        } else if let peerID = directory.peerID(forPeripheral: peripheralID) {
             router.removeNeighbor(peerID)
         }
         refreshPeerList()
     }
 
     private func updateRSSI(peripheralID: UUID, rssi: Int) {
-        guard let peerID = directory.peerID(forPeripheral: peripheralID),
-              let idx = nearbyPeers.firstIndex(where: { $0.id == peerID }) else { return }
-        nearbyPeers[idx].rssi = rssi
+        // RSSI im Directory ablegen (überlebt refreshPeerList) …
+        guard let peerID = directory.setRSSI(rssi, forPeripheral: peripheralID) else { return }
+        // … und die bereits sichtbare Zeile direkt aktualisieren.
+        if let idx = nearbyPeers.firstIndex(where: { $0.id == peerID }) {
+            nearbyPeers[idx].rssi = rssi
+        }
     }
 
     private func refreshPeerList() {
         nearbyPeers = directory.allEntries.map { e in
             PeerViewState(
-                id: e.peerID, displayName: e.displayName, rssi: nil,
+                id: e.peerID, displayName: e.displayName, rssi: e.rssi,
                 hopCount: router.nextHop(to: e.peerID) == e.peerID ? 1 : 2,
-                isVerified: false, isConnected: e.peripheralID != nil
+                isVerified: store.isVerified(peerIDHex: e.peerID.hex),
+                isConnected: e.peripheralID != nil
             )
         }
     }

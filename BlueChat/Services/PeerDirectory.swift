@@ -18,14 +18,32 @@ final class PeerDirectory {
         var signingKey: Curve25519.Signing.PublicKey
         var agreementKey: Curve25519.KeyAgreement.PublicKey
         var displayName: String
+        /// Zuletzt gemessene Signalstärke (RSSI), für die UI.
+        var rssi: Int? = nil
     }
 
     private var byPeerID: [PeerID: Entry] = [:]
     private var peerIDByPeripheral: [UUID: PeerID] = [:]
 
     func upsert(_ entry: Entry) {
-        byPeerID[entry.peerID] = entry
-        if let pid = entry.peripheralID { peerIDByPeripheral[pid] = entry.peerID }
+        var merged = entry
+        // Bereits bekannte, flüchtige Werte (RSSI, peripheralID) nicht durch ein
+        // HELLO ohne diese Angaben überschreiben.
+        if let existing = byPeerID[entry.peerID] {
+            if merged.rssi == nil { merged.rssi = existing.rssi }
+            if merged.peripheralID == nil { merged.peripheralID = existing.peripheralID }
+        }
+        byPeerID[entry.peerID] = merged
+        if let pid = merged.peripheralID { peerIDByPeripheral[pid] = entry.peerID }
+    }
+
+    /// Aktualisiert die Signalstärke anhand der flüchtigen Peripheral-ID.
+    /// Liefert die zugehörige PeerID zurück, falls bereits gebunden.
+    @discardableResult
+    func setRSSI(_ rssi: Int, forPeripheral peripheralID: UUID) -> PeerID? {
+        guard let peerID = peerIDByPeripheral[peripheralID] else { return nil }
+        byPeerID[peerID]?.rssi = rssi
+        return peerID
     }
 
     func bind(peerID: PeerID, toPeripheral peripheralID: UUID) {

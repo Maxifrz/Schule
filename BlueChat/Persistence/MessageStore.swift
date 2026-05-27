@@ -41,6 +41,43 @@ final class MessageStore {
         return try context.fetch(descriptor).first
     }
 
+    // MARK: - Peers / Kontakte
+
+    func peer(peerIDHex: String) throws -> PeerRecord? {
+        let descriptor = FetchDescriptor<PeerRecord>(predicate: #Predicate { $0.peerIDHex == peerIDHex })
+        return try context.fetch(descriptor).first
+    }
+
+    /// Legt einen Kontakt an oder aktualisiert seine Stammdaten (Name, Keys,
+    /// zuletzt gesehen). Der Verifizierungsstatus bleibt dabei erhalten.
+    @discardableResult
+    func upsertPeer(peerIDHex: String, displayName: String, signingKey: Data, agreementKey: Data) throws -> PeerRecord {
+        if let existing = try peer(peerIDHex: peerIDHex) {
+            existing.displayName = displayName
+            existing.signingPublicKey = signingKey
+            existing.agreementPublicKey = agreementKey
+            existing.lastSeen = Date()
+            try context.save()
+            return existing
+        }
+        let record = PeerRecord(peerIDHex: peerIDHex, displayName: displayName,
+                                signingPublicKey: signingKey, agreementPublicKey: agreementKey, lastSeen: Date())
+        context.insert(record)
+        try context.save()
+        return record
+    }
+
+    func setVerified(peerIDHex: String, _ verified: Bool) throws {
+        guard let record = try peer(peerIDHex: peerIDHex) else { return }
+        record.isVerified = verified
+        try context.save()
+    }
+
+    func isVerified(peerIDHex: String) -> Bool {
+        guard let record = try? peer(peerIDHex: peerIDHex) else { return false }
+        return record?.isVerified ?? false
+    }
+
     // MARK: - Nachrichten
 
     @discardableResult

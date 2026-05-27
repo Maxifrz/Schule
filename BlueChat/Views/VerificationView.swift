@@ -16,11 +16,10 @@ struct VerificationView: View {
     @State private var verified = false
 
     private var fingerprint: Data? {
-        // Lokaler Identity-Key vs. (hier vereinfacht) PeerID-abgeleiteter Platzhalter.
-        // In der echten App liefert die Engine den gespeicherten Signing-Key des Peers.
         let local = appState.engine.identity.signing.publicKey.rawRepresentation
-        // Platzhalter-Remote-Key: in der Praxis aus PeerDirectory/PeerRecord.
-        return Fingerprint.combined(localSigningKey: local, remoteSigningKey: Data(peerID.bytes))
+        // Echter, gespeicherter Signing-Key des Peers (aus dem HELLO).
+        guard let remote = appState.engine.signingKeyData(for: peerID) else { return nil }
+        return Fingerprint.combined(localSigningKey: local, remoteSigningKey: remote)
     }
 
     var body: some View {
@@ -42,6 +41,9 @@ struct VerificationView: View {
 
                     Text("Kurz-Fingerprint: \(Fingerprint.shortHex(from: fp))")
                         .font(.footnote).foregroundStyle(.secondary)
+                } else {
+                    Text("Noch kein Schlüssel von \(peerName) empfangen. Sobald das Gerät in Reichweite ist (HELLO), erscheint hier der Sicherheitscode.")
+                        .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
                 }
 
                 Text("Vergleicht die Zahlenfolge persönlich oder per QR-Scan. Stimmt sie überein, tippt auf „Als verifiziert markieren".")
@@ -49,11 +51,16 @@ struct VerificationView: View {
 
                 Toggle("Als verifiziert markieren", isOn: $verified)
                     .padding(.horizontal)
+                    .disabled(fingerprint == nil)
+                    .onChange(of: verified) { _, newValue in
+                        appState.engine.setVerified(peerID, newValue)
+                    }
             }
             .padding()
         }
         .navigationTitle("Verifizieren")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear { verified = appState.engine.isVerified(peerID) }
     }
 }
 
