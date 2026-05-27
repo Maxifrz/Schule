@@ -1,0 +1,51 @@
+# XcodeGen-Projektdefinition für BlueChat.
+#
+# Erzeugt eine .xcodeproj aus dieser Beschreibung – so bleibt die
+# Projektkonfiguration als lesbarer, versionierbarer Text erhalten (statt
+# als binärer pbxproj-Merge-Albtraum).
+#
+# Verwendung:
+#   brew install xcodegen
+#   xcodegen generate
+#   open BlueChat.xcodeproj
+#
+# Das lokale Swift-Package BlueChatCore wird als Abhängigkeit eingebunden.
+
+name: BlueChat
+options:
+  bundleIdPrefix: app.bluechat
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+packages:
+  BlueChatCore:
+    path: BlueChatCore
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # Datenbank/Dateien verschlüsselt-at-rest:
+    # Schutzklasse wird zusätzlich über Entitlements/Default-Data-Protection gesetzt.
+
+targets:
+  BlueChat:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: BlueChat
+    info:
+      path: BlueChat/App/Info.plist
+    dependencies:
+      - package: BlueChatCore
+    settings:
+      base:
+        INFOPLIST_FILE: BlueChat/App/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: app.bluechat
+        GENERATE_INFOPLIST_FILE: NO
+        TARGETED_DEVICE_FAMILY: "1,2"
+        # SwiftData (@Model) benötigt zur Laufzeit iOS 17; Deployment-Target
+        # bleibt 16 für nicht-SwiftData-Codepfade. Siehe README zur Strategie.

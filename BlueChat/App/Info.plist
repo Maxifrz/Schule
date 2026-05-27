@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Erforderliche Info.plist-Einträge für BlueChat.
+
+  - NSBluetoothAlwaysUsageDescription: Pflicht-Begründung (iOS 13+) für den
+    Bluetooth-Zugriff. Ohne diesen String stürzt die App beim ersten
+    CoreBluetooth-Zugriff ab bzw. wird im Review abgelehnt.
+  - UIBackgroundModes: bluetooth-central + bluetooth-peripheral erlauben
+    Scannen/Advertisen im Hintergrund (mit den dokumentierten iOS-Limits).
+    remote-notification ist für lokale Wecker via BLE-State-Restoration NICHT
+    nötig; lokale Notifications brauchen keinen Background-Mode.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDisplayName</key>
+    <string>BlueChat</string>
+    <key>CFBundleIdentifier</key>
+    <string>app.bluechat</string>
+
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>BlueChat nutzt Bluetooth, um Nachrichten direkt und offline mit Geräten in deiner Nähe auszutauschen – ganz ohne Internet oder Server.</string>
+
+    <!-- iOS 12 und früher fragten zusätzlich NSBluetoothPeripheralUsageDescription ab. -->
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>BlueChat sendet als Bluetooth-Peripheral, damit andere dich in Reichweite finden und dir schreiben können.</string>
+
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>bluetooth-central</string>
+        <string>bluetooth-peripheral</string>
+    </array>
+
+    <key>UILaunchScreen</key>
+    <dict/>
+
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+</dict>
+</plist>

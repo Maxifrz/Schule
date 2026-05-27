@@ -1,0 +1,15 @@
+# Xcode / Swift
+*.xcodeproj/          # generiert via `xcodegen generate`
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+build/
+.build/               # SwiftPM
+.swiftpm/
+Package.resolved
+
+# macOS
+.DS_Store
+
+# Secrets / lokale Konfiguration
+*.xcconfig.local
