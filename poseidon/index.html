@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Restaurant Poseidon – Griechisches Restaurant in Langelsheim-Astfeld | Gyros, Grill &amp; Meeresfrüchte</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Restaurant Poseidon in Langelsheim-Astfeld – authentische griechische Küche, frisch zubereitet. Gyros, Souvlaki, Meeresfrüchte und neue Sommerterrasse. Goslarsche Str. 50, Tel. +49 5326 9699445.">
+<style>
+/* ═══ TOKENS — Designsystem Poseidon Astfeld ═════════════════════════════ */
+:root {
+  --bg:        #FBF8F1;   /* Kalkweiß */
+  --bg-2:      #F4EEE0;
+  --surface:   #FFFFFF;
+  --fg:        #2C2C2E;   /* Anthrazit */
+  --fg-2:      #55555A;
+  --fg-3:      #8A8A8E;   /* Steingrau */
+  --blue:      #1E5AA8;   /* Poseidon-Blau */
+  --blue-deep: #123A6B;   /* Ägäis-Tief */
+  --wood:      #B07A44;   /* Taverna-Holz */
+  --wood-deep: #7A5230;
+  --magenta:   #D6336C;   /* Magenta-Fest — exklusiv für CTAs */
+  --magenta-2: #B02456;
+  --gold:      #E0A93B;   /* Ouzo-Gold — Preise, Sterne, Badges */
+  --gold-deep: #A97B1F;
+  --ok:        #3C9A5F;
+  --warn:      #C0392B;
+  --rule:      rgba(18,58,107,0.14);
+  --shadow:    0 2px 10px rgba(18,58,107,0.08);
+  --on-blue:   #FBF8F1;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #0F2038;
+    --bg-2:      #142946;
+    --surface:   #1A3153;
+    --fg:        #F0EBDF;
+    --fg-2:      #C2BCAE;
+    --fg-3:      #8D94A3;
+    --blue:      #6FA3E0;
+    --blue-deep: #0B1A30;
+    --wood:      #C89258;
+    --wood-deep: #A4713F;
+    --magenta:   #E85D8C;
+    --magenta-2: #D6336C;
+    --gold:      #E8B85C;
+    --gold-deep: #E0A93B;
+    --ok:        #5CBE83;
+    --warn:      #E0705F;
+    --rule:      rgba(111,163,224,0.2);
+    --shadow:    0 2px 10px rgba(0,0,0,0.3);
+    --on-blue:   #F0EBDF;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #FBF8F1; --bg-2: #F4EEE0; --surface: #FFFFFF;
+  --fg: #2C2C2E; --fg-2: #55555A; --fg-3: #8A8A8E;
+  --blue: #1E5AA8; --blue-deep: #123A6B;
+  --wood: #B07A44; --wood-deep: #7A5230;
+  --magenta: #D6336C; --magenta-2: #B02456;
+  --gold: #E0A93B; --gold-deep: #A97B1F;
+  --ok: #3C9A5F; --warn: #C0392B;
+  --rule: rgba(18,58,107,0.14);
+  --shadow: 0 2px 10px rgba(18,58,107,0.08);
+  --on-blue: #FBF8F1;
+}
+:root[data-theme="dark"] {
+  --bg: #0F2038; --bg-2: #142946; --surface: #1A3153;
+  --fg: #F0EBDF; --fg-2: #C2BCAE; --fg-3: #8D94A3;
+  --blue: #6FA3E0; --blue-deep: #0B1A30;
+  --wood: #C89258; --wood-deep: #A4713F;
+  --magenta: #E85D8C; --magenta-2: #D6336C;
+  --gold: #E8B85C; --gold-deep: #E0A93B;
+  --ok: #5CBE83; --warn: #E0705F;
+  --rule: rgba(111,163,224,0.2);
+  --shadow: 0 2px 10px rgba(0,0,0,0.3);
+  --on-blue: #F0EBDF;
+}
+
+/* ═══ BASE ═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; }
+[id] { scroll-margin-top: 5.5rem; }
+h1, h2, h3, .serif {
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 300;
+  padding: 0.75rem 1.5rem;
+  background: var(--magenta);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ═══ UTILITY ════════════════════════════════════════════════════════════ */
+.label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--blue);
+  opacity: 0.4;
+  padding: 0.25rem 0;
+}
+.divider-line { flex: 1; height: 1px; background: currentColor; }
+
+/* ═══ NAV ════════════════════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 2.75rem;
+  background: var(--blue-deep);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 14px rgba(0,0,0,0.25); }
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--on-blue);
+  text-decoration: none;
+}
+.nav-emblem { width: 2.25rem; height: 2.25rem; color: var(--gold); flex-shrink: 0; }
+.nav-brand-text {
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,serif;
+  font-size: 1.125rem;
+  letter-spacing: 0.14em;
+  line-height: 1.15;
+}
+.nav-brand-sub {
+  display: block;
+  font-family: system-ui,sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(251,248,241,0.55);
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(251,248,241,0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a:focus-visible { color: var(--gold); }
+.nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.nav-reserve {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.55rem 1.375rem;
+  background: var(--magenta);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.nav-reserve:hover { background: var(--magenta-2); }
+.nav-reserve:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background: none;
+  border: 1px solid rgba(251,248,241,0.35);
+  border-radius: 8px;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--on-blue);
+  transition: transform 0.25s, opacity 0.25s;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ═══ HERO — Tages-Ägäis ═════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: 6.5rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #1E5AA8;
+}
+#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 52rem;
+}
+.hero-emblem {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.25rem;
+  color: var(--gold);
+}
+.hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FBF8F1;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+}
+.hero-name {
+  font-size: clamp(3.25rem, 10vw, 6.5rem);
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+  line-height: 0.98;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 18px rgba(11,26,48,0.35);
+}
+.hero-tagline {
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,serif;
+  font-size: clamp(1rem, 2vw, 1.3125rem);
+  font-style: italic;
+  color: rgba(251,248,241,0.85);
+  margin-bottom: 2rem;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.9rem 2.25rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.hero-cta.primary {
+  background: var(--magenta);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(214,51,108,0.35);
+}
+.hero-cta.primary:hover { background: var(--magenta-2); }
+.hero-cta.secondary {
+  border: 1.5px solid rgba(251,248,241,0.75);
+  color: #FBF8F1;
+}
+.hero-cta.secondary:hover { background: rgba(251,248,241,0.14); border-color: #FBF8F1; }
+.hero-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.hero-info {
+  display: flex;
+  gap: 0.75rem 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  color: rgba(251,248,241,0.9);
+  margin-bottom: 1.25rem;
+}
+.hero-info a { color: inherit; text-decoration: none; transition: color 0.18s; }
+.hero-info a:hover { color: var(--gold); }
+.hero-info a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.status-pill { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+.status-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #6FD397;
+  flex-shrink: 0;
+}
+.status-pill.closed .status-dot { background: #F0907F; }
+
+.hero-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.chip {
+  padding: 0.3rem 0.875rem;
+  border: 1px solid rgba(251,248,241,0.35);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(251,248,241,0.85);
+}
+.hero-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(251,248,241,0.9);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.hero-rating:hover { color: var(--gold); }
+.hero-rating:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.stars { color: var(--gold); letter-spacing: 0.1em; font-size: 0.9375rem; }
+
+/* ═══ ABOUT ══════════════════════════════════════════════════════════════ */
+.about-section {
+  padding: 6rem 2.75rem;
+  max-width: 76rem;
+  margin: 0 auto;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-text .label { margin-bottom: 1rem; }
+.about-text h2 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+.about-text p {
+  color: var(--fg-2);
+  line-height: 1.7;
+  max-width: 48ch;
+}
+.about-text p + p { margin-top: 1rem; }
+.about-aside {
+  padding: 2.25rem 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--wood);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-top: 2rem;
+}
+.about-aside blockquote {
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,serif;
+  font-size: 1.1875rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--fg);
+  text-wrap: balance;
+  margin-bottom: 1.25rem;
+}
+.about-aside cite {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  font-style: normal;
+}
+.about-kpi-row { display: flex; flex-direction: column; gap: 1.75rem; margin-top: 2.5rem; }
+.about-kpi { display: flex; gap: 1.25rem; align-items: flex-start; }
+.kpi-icon {
+  flex-shrink: 0;
+  width: 2rem; height: 2rem;
+  color: var(--blue);
+  margin-top: 0.1rem;
+}
+.kpi-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--wood-deep);
+  margin-bottom: 0.2rem;
+}
+.kpi-value { font-size: 0.9375rem; color: var(--fg-2); }
+
+/* ═══ MEANDER DIVIDER ════════════════════════════════════════════════════ */
+.meander-row { padding: 0 2.75rem; max-width: 76rem; margin: 0 auto; }
+
+/* ═══ MENU ═══════════════════════════════════════════════════════════════ */
+.menu-section { background: var(--bg-2); padding: 6rem 0; }
+.menu-head { text-align: center; padding: 0 2.75rem; margin-bottom: 3rem; }
+.menu-head .label { margin-bottom: 0.875rem; }
+.menu-head h2 { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 0.75rem; }
+.menu-head p { font-style: italic; font-family: 'Palatino Linotype',Palatino,serif; color: var(--fg-2); }
+.tab-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 2.75rem;
+  margin-bottom: 2.5rem;
+}
+.tab-btn {
+  min-height: 44px;
+  padding: 0.55rem 1.375rem;
+  font-family: system-ui,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  transition: color 0.18s, background 0.18s, border-color 0.18s;
+}
+.tab-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.tab-btn.active {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+.tab-btn:not(.active):hover { color: var(--blue); border-color: var(--blue); }
+.menu-panel-wrap { max-width: 76rem; margin: 0 auto; padding: 0 2.75rem; }
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+.dish-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr));
+  gap: 1rem;
+}
+.dish {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.125rem 1.375rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.dish-info { flex: 1; min-width: 0; }
+.dish-name {
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,serif;
+  font-size: 1.0625rem;
+  color: var(--fg);
+}
+.dish-desc {
+  font-size: 0.8438rem;
+  color: var(--fg-3);
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+.dish-price {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--gold-deep);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.15rem;
+}
+.badge {
+  display: inline-block;
+  font-family: system-ui,sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.5rem;
+  vertical-align: 0.2em;
+  border: 1px solid var(--ok);
+  color: var(--ok);
+}
+.badge.vegan { border-color: var(--ok); }
+.badge.popular {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #2C2C2E;
+}
+.allerg {
+  font-family: system-ui,sans-serif;
+  font-size: 0.625rem;
+  color: var(--fg-3);
+  margin-left: 0.4rem;
+  letter-spacing: 0.06em;
+}
+.menu-note {
+  margin-top: 1.75rem;
+  font-size: 0.8125rem;
+  color: var(--fg-3);
+  font-style: italic;
+}
+.allergen-legend {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.25rem;
+}
+.allergen-legend summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--fg-2);
+  list-style-position: inside;
+}
+.allergen-legend summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.allergen-legend p {
+  font-size: 0.8125rem;
+  color: var(--fg-3);
+  line-height: 1.8;
+  margin-top: 0.75rem;
+  max-width: 62ch;
+}
+
+/* ═══ TERRACE ════════════════════════════════════════════════════════════ */
+.terrace-section {
+  padding: 6rem 2.75rem;
+  background: var(--blue-deep);
+  text-align: center;
+}
+.terrace-quote {
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  font-style: italic;
+  color: var(--on-blue);
+  line-height: 1.55;
+  max-width: 52ch;
+  margin: 0 auto 1.5rem;
+  text-wrap: balance;
+}
+.terrace-attr {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(251,248,241,0.5);
+}
+.terrace-section .divider {
+  max-width: 28rem;
+  margin: 0 auto 3rem;
+  color: var(--gold);
+  opacity: 0.6;
+}
+
+/* ═══ HOURS & CONTACT ════════════════════════════════════════════════════ */
+.info-section { padding: 6rem 2.75rem; max-width: 76rem; margin: 0 auto; }
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.info-block .label { margin-bottom: 1rem; }
+.info-block h3 {
+  font-size: clamp(1.5rem, 3vw, 2.125rem);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.hours-tbl { width: 100%; border-collapse: collapse; }
+.hours-tbl td {
+  font-size: 0.9375rem;
+  padding-bottom: 0.875rem;
+  vertical-align: top;
+}
+.hours-tbl td:first-child {
+  color: var(--fg-2);
+  font-weight: 600;
+  padding-right: 2rem;
+  white-space: nowrap;
+  width: 8rem;
+}
+.hours-tbl td:last-child {
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+.hours-tbl tr.closed td { color: var(--fg-3); font-style: italic; }
+.hours-tbl tr.today td:first-child { color: var(--blue); }
+.hours-tbl tr.today td:last-child { color: var(--fg); font-weight: 700; }
+
+.contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+.contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+.contact-item-icon {
+  flex-shrink: 0;
+  width: 1.25rem; height: 1.25rem;
+  color: var(--blue);
+  margin-top: 0.15rem;
+}
+.contact-item-body { font-size: 0.9375rem; color: var(--fg-2); line-height: 1.55; }
+.contact-item-body a { color: var(--fg-2); text-decoration: none; transition: color 0.18s; }
+.contact-item-body a:hover { color: var(--blue); }
+.contact-item-body a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: 1.75rem;
+  padding: 0.75rem 1.625rem;
+  border: 1.5px solid var(--blue);
+  border-radius: 8px;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--blue); color: #fff; }
+.btn-outline:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+/* ═══ RESERVATION ════════════════════════════════════════════════════════ */
+.reserve-section {
+  background: var(--bg-2);
+  padding: 5rem 2.75rem;
+  text-align: center;
+  border-top: 1px solid var(--rule);
+}
+.reserve-section h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 0.75rem; }
+.reserve-section p {
+  font-family: 'Palatino Linotype',Palatino,serif;
+  font-style: italic;
+  color: var(--fg-2);
+  margin-bottom: 2rem;
+}
+.btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 1rem 2.75rem;
+  background: var(--magenta);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(214,51,108,0.3);
+  transition: background 0.2s;
+}
+.btn-solid:hover { background: var(--magenta-2); }
+.btn-solid:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ═══ FOOTER ═════════════════════════════════════════════════════════════ */
+footer {
+  background: var(--blue-deep);
+  color: rgba(251,248,241,0.55);
+  padding: 3rem 2.75rem;
+  text-align: center;
+}
+.footer-emblem { width: 2.5rem; height: 2.5rem; margin: 0 auto 0.875rem; color: var(--gold); }
+.footer-brand {
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,serif;
+  font-size: 1.1875rem;
+  letter-spacing: 0.14em;
+  color: rgba(251,248,241,0.85);
+  margin-bottom: 0.875rem;
+}
+footer p { font-size: 0.8125rem; line-height: 1.7; }
+footer p a { color: inherit; text-decoration: none; transition: color 0.18s; }
+footer p a:hover { color: var(--gold); }
+.footer-reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid rgba(224,169,59,0.5);
+  border-radius: 8px;
+  color: rgba(251,248,241,0.75);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: color 0.18s, border-color 0.18s;
+}
+.footer-reviews:hover { color: var(--gold); border-color: var(--gold); }
+.footer-reviews .stars { font-size: 0.8125rem; }
+.legal {
+  max-width: 44rem;
+  margin: 2.5rem auto 0;
+  text-align: left;
+  border-top: 1px solid rgba(251,248,241,0.12);
+}
+.legal details { border-bottom: 1px solid rgba(251,248,241,0.12); }
+.legal summary {
+  cursor: pointer;
+  padding: 0.875rem 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(251,248,241,0.65);
+  list-style-position: inside;
+}
+.legal summary:hover { color: var(--gold); }
+.legal summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.legal-body {
+  padding: 0 0.25rem 1.25rem;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: rgba(251,248,241,0.45);
+}
+.legal-body p + p { margin-top: 0.75rem; }
+
+/* ═══ MOBILE STICKY CTA ══════════════════════════════════════════════════ */
+.mobile-cta { display: none; }
+
+/* ═══ RESPONSIVE ═════════════════════════════════════════════════════════ */
+@media (max-width: 800px) {
+  nav { padding: 0.75rem 1.25rem; flex-wrap: wrap; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 0.875rem;
+    border-top: 1px solid rgba(251,248,241,0.15);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    display: block;
+    padding: 1rem 0.25rem;
+    border-bottom: 1px solid rgba(251,248,241,0.08);
+  }
+  .hero { padding: 6rem 1.25rem 2.5rem; }
+  .hero-cta-row { flex-direction: column; align-items: center; }
+  .hero-cta { width: 100%; max-width: 22rem; }
+  .about-section, .info-section { padding: 4rem 1.25rem; }
+  .about-grid, .info-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about-aside { margin-top: 0; }
+  .menu-section { padding: 4rem 0; }
+  .menu-head, .tab-bar, .menu-panel-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .terrace-section, .reserve-section { padding: 4rem 1.25rem; }
+  footer { padding: 2.5rem 1.25rem 6.5rem; }
+  .meander-row { padding: 0 1.25rem; }
+  .dish-list { grid-template-columns: 1fr; }
+  .nav-reserve { padding: 0.55rem 1rem; min-height: 40px; }
+
+  .mobile-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 150;
+    display: flex;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.25);
+  }
+  .mobile-cta a {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .mobile-cta .call { background: var(--magenta); color: #fff; }
+  .mobile-cta .menu-link { background: var(--blue-deep); color: var(--on-blue); }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<a href="#speisekarte" class="skip-link">Direkt zur Speisekarte</a>
+<nav id="nav">
+  <a href="#" class="nav-brand">
+    <svg class="nav-emblem" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="24" r="21.5" stroke-width="1.5"/>
+      <path d="M24 39V12"/>
+      <path d="M20 12l4-4 4 4"/>
+      <path d="M14 14v4c0 6 4.5 10 10 10s10-4 10-10v-4"/>
+      <path d="M11 17l3-3 3 3"/>
+      <path d="M31 17l3-3 3 3"/>
+      <path d="M18 39h12"/>
+    </svg>
+    <span class="nav-brand-text">POSEIDON
+      <span class="nav-brand-sub">Griechisches Restaurant · Astfeld</span>
+    </span>
+  </a>
+  <ul class="nav-links" id="nav-menu" role="list">
+    <li><a href="#speisekarte">Speisekarte</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="tel:+4953269699445" class="nav-reserve">Reservieren</a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Restaurant Poseidon">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <svg class="hero-emblem" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="24" r="21.5" stroke-width="1.5"/>
+      <path d="M24 39V12"/>
+      <path d="M20 12l4-4 4 4"/>
+      <path d="M14 14v4c0 6 4.5 10 10 10s10-4 10-10v-4"/>
+      <path d="M11 17l3-3 3 3"/>
+      <path d="M31 17l3-3 3 3"/>
+      <path d="M18 39h12"/>
+    </svg>
+    <p class="hero-eyebrow">Griechische Spezialitäten vom Grill · Langelsheim-Astfeld</p>
+    <h1 class="hero-name">Poseidon</h1>
+    <p class="hero-tagline">Mediterrane Wärme im Harz</p>
+    <div class="hero-cta-row">
+      <a href="tel:+4953269699445" class="hero-cta primary">Reservier deinen Tisch</a>
+      <a href="#speisekarte" class="hero-cta secondary">Speisekarte ansehen</a>
+    </div>
+    <div class="hero-info">
+      <span class="status-pill" id="open-status"><span class="status-dot"></span><span id="open-status-text">Öffnungszeiten laden …</span></span>
+      <a href="https://maps.google.com/?q=Restaurant+Poseidon+Astfeld,+Goslarsche+Str.+50,+38685+Langelsheim-Astfeld" target="_blank" rel="noopener noreferrer">Goslarsche Str. 50, Langelsheim-Astfeld</a>
+      <a href="tel:+4953269699445">+49 5326 9699445</a>
+    </div>
+    <div class="hero-chips" aria-label="Auf einen Blick">
+      <span class="chip">20–30 € p. P.</span>
+      <span class="chip">Neue Terrasse</span>
+      <span class="chip">Hunde erlaubt</span>
+      <span class="chip">Familienfreundlich</span>
+    </div>
+    <a class="hero-rating" href="https://maps.google.com/?q=Restaurant+Poseidon+Astfeld,+Goslarsche+Str.+50,+38685+Langelsheim-Astfeld" target="_blank" rel="noopener noreferrer">
+      <span class="stars" aria-hidden="true">★★★★★</span> 4,6 von 5 bei Google
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="ueber-uns" aria-label="Über uns">
+  <div class="about-section">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="label">Kalimera — Über uns</span>
+        <h2>Herzlich willkommen im Poseidon</h2>
+        <p>Bei uns in Astfeld triffst du auf echte griechische Gastfreundschaft: warmes Holz, festlich gedeckte Tische und Rezepte, die seit Generationen weitergegeben werden. Frische Zutaten und viel Herz — das ist unser Versprechen an jeden Abend.</p>
+        <p>Vom zarten Gyros vom Drehspieß über knusprigen Saganaki bis zum gegrillten Oktopus: Unsere Küche verbindet klassische griechische Tradition mit familiärer Herzlichkeit. Yamas!</p>
+        <div class="about-kpi-row">
+          <div class="about-kpi">
+            <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.545 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/>
+            </svg>
+            <div>
+              <div class="kpi-label">Frisch vom Grill</div>
+              <div class="kpi-value">Täglich frisch zubereitete Speisen ohne Fertigprodukte</div>
+            </div>
+          </div>
+          <div class="about-kpi">
+            <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+            </svg>
+            <div>
+              <div class="kpi-label">Neue Terrasse</div>
+              <div class="kpi-value">Holzdeck, blaue Schirme und Sommer satt — genieß den Abend draußen</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="about-aside">
+          <blockquote>
+            „Die neue Terrasse lädt ein zum Verweilen, zum Genießen und zum Innehalten unter dem Sommerhimmel von Astfeld.“
+          </blockquote>
+          <cite>Das Team des Restaurant Poseidon</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="meander-row">
+  <div class="divider" aria-hidden="true">
+    <span class="divider-line"></span>
+    <svg width="56" height="14" viewBox="0 0 56 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0"  y="0"  width="2" height="10"/>
+      <rect x="0"  y="8"  width="10" height="2"/>
+      <rect x="8"  y="0"  width="2" height="10"/>
+      <rect x="2"  y="0"  width="6" height="2"/>
+      <rect x="20" y="0"  width="2" height="10"/>
+      <rect x="20" y="8"  width="10" height="2"/>
+      <rect x="28" y="0"  width="2" height="10"/>
+      <rect x="22" y="0"  width="6" height="2"/>
+      <rect x="40" y="0"  width="2" height="10"/>
+      <rect x="40" y="8"  width="10" height="2"/>
+      <rect x="48" y="0"  width="2" height="10"/>
+      <rect x="42" y="0"  width="6" height="2"/>
+    </svg>
+    <span class="divider-line"></span>
+  </div>
+</div>
+
+<!-- MENU -->
+<section id="speisekarte" class="menu-section" aria-label="Speisekarte">
+  <div class="menu-head">
+    <span class="label">Speisekarte</span>
+    <h2>Aus unserer Küche</h2>
+    <p>Alle Gerichte täglich frisch zubereitet</p>
+  </div>
+
+  <div class="tab-bar" role="tablist" aria-label="Speisekarten-Kategorien">
+    <button class="tab-btn active" id="btn-vorspeisen" role="tab" data-target="tab-vorspeisen" aria-controls="tab-vorspeisen" aria-selected="true">Vorspeisen</button>
+    <button class="tab-btn" id="btn-haupt" role="tab" data-target="tab-haupt" aria-controls="tab-haupt" aria-selected="false" tabindex="-1">Hauptgerichte</button>
+    <button class="tab-btn" id="btn-meer" role="tab" data-target="tab-meer" aria-controls="tab-meer" aria-selected="false" tabindex="-1">Meeresfrüchte</button>
+    <button class="tab-btn" id="btn-salate" role="tab" data-target="tab-salate" aria-controls="tab-salate" aria-selected="false" tabindex="-1">Salate</button>
+    <button class="tab-btn" id="btn-suess" role="tab" data-target="tab-suess" aria-controls="tab-suess" aria-selected="false" tabindex="-1">Desserts &amp; Getränke</button>
+  </div>
+
+  <div class="menu-panel-wrap">
+
+    <div id="tab-vorspeisen" class="menu-panel active" role="tabpanel" aria-labelledby="btn-vorspeisen">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Tzatziki mit Pitabrot<span class="badge">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">Cremiger Joghurt mit Knoblauch, Gurke und frischem Dill</div></div><div class="dish-price">4,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Taramosalata<span class="allerg">F · G</span></div><div class="dish-desc">Griechische Fischrogencreme mit warmem Pitabrot</div></div><div class="dish-price">5,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Saganaki<span class="badge">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">In der Pfanne gebratener Schafskäse mit Zitrone und Oregano</div></div><div class="dish-price">6,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Dolmades<span class="badge vegan">Vegan</span></div><div class="dish-desc">Weinblätter, gefüllt mit Reis und frischen Kräutern</div></div><div class="dish-price">5,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Melitzanosalata<span class="badge vegan">Vegan</span></div><div class="dish-desc">Über der Flamme gegrillte Aubergine, Knoblauch, Olivenöl</div></div><div class="dish-price">5,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gemischte Mezze<span class="allerg">F · G · M</span></div><div class="dish-desc">Tzatziki, Tarama und Melitzanosalata mit Pitabrot</div></div><div class="dish-price">13,90 €</div></div>
+      </div>
+      <p class="menu-note">Alle Vorspeisen werden mit frischem Pitabrot serviert.</p>
+    </div>
+
+    <div id="tab-haupt" class="menu-panel" role="tabpanel" aria-labelledby="btn-haupt">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gyros überbacken mit Metaxasauce<span class="badge popular">Beliebt</span><span class="allerg">G · M</span></div><div class="dish-desc">Unser Klassiker: Gyros mit cremiger Metaxasauce und Käse überbacken, dazu goldene Pommes</div></div><div class="dish-price">15,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gyros vom Grill<span class="allerg">M</span></div><div class="dish-desc">Vom Drehspieß, würzig mariniert, mit Pommes frites, Tzatziki und roten Zwiebeln</div></div><div class="dish-price">13,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Hähnchen Souvlaki<span class="allerg">M</span></div><div class="dish-desc">Zwei Grillspieße mit Zitronenreis, Tzatziki und Bauernsalat</div></div><div class="dish-price">14,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Moussaka<span class="allerg">E · G · M</span></div><div class="dish-desc">Hausgemacht geschichtet: Hackfleisch, Aubergine, Kartoffeln, goldene Béchamelhaube</div></div><div class="dish-price">13,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Lammkoteletts</div><div class="dish-desc">Vier zarte Koteletts vom Grill mit Rosmarinkartoffeln und Salat</div></div><div class="dish-price">18,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pastitsio<span class="allerg">E · G · M</span></div><div class="dish-desc">Griechischer Nudelauflauf mit Hackfleisch und Béchamel, im Ofen überbacken</div></div><div class="dish-price">12,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gemischter Grillteller<span class="allerg">M</span></div><div class="dish-desc">Gyros, Souvlaki und Bifteki vom Holzkohlegrill mit Beilagen nach Wahl</div></div><div class="dish-price">21,90 €</div></div>
+      </div>
+    </div>
+
+    <div id="tab-meer" class="menu-panel" role="tabpanel" aria-labelledby="btn-meer">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gegrillter Oktopus<span class="allerg">W</span></div><div class="dish-desc">Zart gegrillt, mit Kapern, Zitrone, Petersilie und bestem Olivenöl</div></div><div class="dish-price">17,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Garnelen Saganaki<span class="allerg">K · M</span></div><div class="dish-desc">In fruchtiger Tomatensauce mit Schafskäse überbacken</div></div><div class="dish-price">16,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Dorade vom Grill<span class="allerg">F · M</span></div><div class="dish-desc">Ganzer Fisch vom Grill mit Knoblauchbutter und mediterranem Gemüse</div></div><div class="dish-price">19,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Calamari fritti<span class="allerg">E · G · W</span></div><div class="dish-desc">Knusprig ausgebackene Tintenfischringe mit hausgemachter Aioli</div></div><div class="dish-price">14,50 €</div></div>
+      </div>
+      <p class="menu-note">Unsere Meeresfrüchte kommen täglich frisch aus dem Handel.</p>
+    </div>
+
+    <div id="tab-salate" class="menu-panel" role="tabpanel" aria-labelledby="btn-salate">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Horiatiki<span class="badge">Vegetarisch</span><span class="allerg">M</span></div><div class="dish-desc">Der Klassiker: Tomate, Gurke, Oliven, Schafskäse, Oregano</div></div><div class="dish-price">9,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Griechischer Bauernsalat<span class="badge">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">Knackig frisch, mit geröstetem Pitabrot und Olivenöl</div></div><div class="dish-price">8,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Rucolasalat<span class="badge">Vegetarisch</span><span class="allerg">M</span></div><div class="dish-desc">Mit Kirschtomaten, Parmesan und Balsamico-Reduktion</div></div><div class="dish-price">8,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Salat mit Grillhähnchen<span class="allerg">E · SF</span></div><div class="dish-desc">Gemischter Salat mit gegrillten Hähnchenstreifen und Honigsenf-Dressing</div></div><div class="dish-price">13,90 €</div></div>
+      </div>
+      <p class="menu-note">Viele Salate bereiten wir auf Wunsch auch vegan zu — sprich uns einfach an.</p>
+    </div>
+
+    <div id="tab-suess" class="menu-panel" role="tabpanel" aria-labelledby="btn-suess">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Baklava<span class="badge">Vegetarisch</span><span class="allerg">G · N</span></div><div class="dish-desc">Hausgemacht, mit Walnüssen und Honigsirup, dazu eine Kugel Vanilleeis</div></div><div class="dish-price">5,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Griechischer Joghurt mit Honig<span class="badge">Vegetarisch</span><span class="allerg">M · N</span></div><div class="dish-desc">Cremiger Joghurt mit Thymianhonig und gerösteten Walnüssen</div></div><div class="dish-price">4,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Ouzo 2 cl<span class="badge popular">Beliebt</span></div><div class="dish-desc">Der klassische Anis-Aperitif — aufs Haus fragen lohnt sich. Yamas!</div></div><div class="dish-price">2,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Griechischer Hauswein 0,25 l<span class="allerg">SO</span></div><div class="dish-desc">Weiß oder rot, trocken oder lieblich — aus kleinen Weingütern</div></div><div class="dish-price">5,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Mythos Bier 0,5 l<span class="allerg">G</span></div><div class="dish-desc">Griechisches Lagerbier, eiskalt gezapft</div></div><div class="dish-price">4,20 €</div></div>
+      </div>
+    </div>
+
+    <details class="allergen-legend">
+      <summary>Allergene &amp; Kennzeichnung</summary>
+      <p>
+        <strong>E</strong> Eier · <strong>F</strong> Fisch · <strong>G</strong> glutenhaltiges Getreide ·
+        <strong>K</strong> Krebstiere · <strong>M</strong> Milch/Laktose · <strong>N</strong> Schalenfrüchte ·
+        <strong>SF</strong> Senf · <strong>SO</strong> Sulfite · <strong>W</strong> Weichtiere
+      </p>
+      <p>Die vollständige Liste aller Allergene und Zusatzstoffe gemäß LMIV bekommst du jederzeit bei unserem Serviceteam. Bei Unverträglichkeiten beraten wir dich gern persönlich.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- TERRACE -->
+<section class="terrace-section" aria-label="Unsere Terrasse">
+  <div class="divider" aria-hidden="true">
+    <span class="divider-line"></span>
+    <svg width="56" height="14" viewBox="0 0 56 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0"  y="0"  width="2" height="10"/>
+      <rect x="0"  y="8"  width="10" height="2"/>
+      <rect x="8"  y="0"  width="2" height="10"/>
+      <rect x="2"  y="0"  width="6" height="2"/>
+      <rect x="20" y="0"  width="2" height="10"/>
+      <rect x="20" y="8"  width="10" height="2"/>
+      <rect x="28" y="0"  width="2" height="10"/>
+      <rect x="22" y="0"  width="6" height="2"/>
+      <rect x="40" y="0"  width="2" height="10"/>
+      <rect x="40" y="8"  width="10" height="2"/>
+      <rect x="48" y="0"  width="2" height="10"/>
+      <rect x="42" y="0"  width="6" height="2"/>
+    </svg>
+    <span class="divider-line"></span>
+  </div>
+  <blockquote class="terrace-quote">
+    „Lass den Abend auf unserer neuen Terrasse ausklingen — unter blauen Schirmen, mit einem Glas griechischem Wein in der Hand. Yamas!“
+  </blockquote>
+  <p class="terrace-attr">Restaurant Poseidon · Langelsheim-Astfeld</p>
+</section>
+
+<!-- HOURS & CONTACT -->
+<section id="oeffnungszeiten" aria-label="Öffnungszeiten und Kontakt">
+  <div class="info-section">
+    <div class="info-grid">
+
+      <div class="info-block">
+        <span class="label">Öffnungszeiten</span>
+        <h3>Wann wir für dich da sind</h3>
+        <table class="hours-tbl">
+          <tbody>
+            <tr data-day="1"><td>Montag</td><td>12:00 – 14:00<br>17:00 – 22:00</td></tr>
+            <tr data-day="2" class="closed"><td>Dienstag</td><td>Ruhetag</td></tr>
+            <tr data-day="3"><td>Mittwoch</td><td>12:00 – 14:00<br>17:00 – 22:00</td></tr>
+            <tr data-day="4"><td>Donnerstag</td><td>12:00 – 14:00<br>17:00 – 22:00</td></tr>
+            <tr data-day="5"><td>Freitag</td><td>12:00 – 14:00<br>17:00 – 22:00</td></tr>
+            <tr data-day="6"><td>Samstag</td><td>12:00 – 14:00<br>17:00 – 22:00</td></tr>
+            <tr data-day="0"><td>Sonntag</td><td>12:00 – 14:00<br>17:00 – 22:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="kontakt" class="info-block">
+        <span class="label">Kontakt &amp; Anfahrt</span>
+        <h3>Besuch uns</h3>
+        <div class="contact-items">
+          <div class="contact-item">
+            <svg class="contact-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+            </svg>
+            <div class="contact-item-body">
+              Goslarsche Str. 50<br>38685 Langelsheim-Astfeld
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+            </svg>
+            <div class="contact-item-body">
+              <a href="tel:+4953269699445">+49 5326 9699445</a>
+            </div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Restaurant+Poseidon+Astfeld,+Goslarsche+Str.+50,+38685+Langelsheim-Astfeld" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+          </svg>
+          Route planen
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION CTA -->
+<section id="reservieren" class="reserve-section" aria-label="Tisch reservieren">
+  <h2>Reservier deinen Tisch</h2>
+  <p>Ein Anruf genügt — wir bestätigen sofort und freuen uns auf dich.<br>Auch für Gruppen, Familienfeiern und größere Gesellschaften.</p>
+  <a href="tel:+4953269699445" class="btn-solid">Jetzt anrufen: +49 5326 9699445</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <svg class="footer-emblem" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="24" cy="24" r="21.5" stroke-width="1.5"/>
+    <path d="M24 39V12"/>
+    <path d="M20 12l4-4 4 4"/>
+    <path d="M14 14v4c0 6 4.5 10 10 10s10-4 10-10v-4"/>
+    <path d="M11 17l3-3 3 3"/>
+    <path d="M31 17l3-3 3 3"/>
+    <path d="M18 39h12"/>
+  </svg>
+  <div class="footer-brand">POSEIDON</div>
+  <p>
+    Griechisches Restaurant · Goslarsche Str. 50 · 38685 Langelsheim-Astfeld<br>
+    <a href="tel:+4953269699445">+49 5326 9699445</a>
+  </p>
+  <a class="footer-reviews" href="https://maps.google.com/?q=Restaurant+Poseidon+Astfeld,+Goslarsche+Str.+50,+38685+Langelsheim-Astfeld" target="_blank" rel="noopener noreferrer">
+    <span class="stars" aria-hidden="true">★★★★★</span> 4,6 bei Google — Bewertungen lesen
+  </a>
+  <div class="legal">
+    <details id="impressum">
+      <summary>Impressum</summary>
+      <div class="legal-body">
+        <p><strong>Angaben gemäß § 5 DDG</strong></p>
+        <p>Restaurant Poseidon Astfeld<br>Goslarsche Str. 50<br>38685 Langelsheim-Astfeld<br>Telefon: +49 5326 9699445</p>
+        <p>[Vom Betreiber zu ergänzen: vollständiger Name der Inhaberin/des Inhabers bzw. Firmierung mit Rechtsform, vertretungsberechtigte Person, E-Mail-Adresse, ggf. Handelsregister und Registernummer, Umsatzsteuer-Identifikationsnummer, zuständige Aufsichtsbehörde.]</p>
+      </div>
+    </details>
+    <details id="datenschutz">
+      <summary>Datenschutzerklärung</summary>
+      <div class="legal-body">
+        <p>Diese Website verwendet keine Cookies, keine Analyse-Dienste und keine extern geladenen Schriftarten. Beim Aufruf werden durch den Hosting-Anbieter technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt des Abrufs) verarbeitet.</p>
+        <p>Links zu Google Maps öffnen den externen Dienst erst nach Ihrem Klick; dabei gelten die Datenschutzbestimmungen von Google.</p>
+        <p>[Vom Betreiber zu ergänzen: verantwortliche Stelle mit Kontaktdaten, Hosting-Anbieter, Angaben zu Betroffenenrechten nach DSGVO, ggf. Datenschutzbeauftragte/r.]</p>
+      </div>
+    </details>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" aria-label="Schnellzugriff">
+  <a class="menu-link" href="#speisekarte">Speisekarte</a>
+  <a class="call" href="tel:+4953269699445">Reservieren</a>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Restaurant Poseidon Astfeld",
+  "servesCuisine": "Griechisch",
+  "priceRange": "€€",
+  "acceptsReservations": "True",
+  "telephone": "+49 5326 9699445",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Goslarsche Str. 50",
+    "postalCode": "38685",
+    "addressLocality": "Langelsheim-Astfeld",
+    "addressCountry": "DE"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "12:00", "closes": "14:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "17:00", "closes": "22:00"
+    }
+  ]
+}
+</script>
+<script>
+/* ── NAV SCROLL ─────────────────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 24);
+}, { passive: true });
+
+/* ── MOBILE MENU ────────────────────────────────────────────────────── */
+(function () {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    menu.classList.toggle('open', open);
+  }
+
+  toggle.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => setOpen(false))
+  );
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+})();
+
+/* ── HERO CANVAS — Tages-Ägäis ──────────────────────────────────────── */
+(function () {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, glints = [], pageBg = '#FBF8F1';
+  let running = false, rafId = 0;
+
+  const GLINT_SEEDS = [
+    [0.08,0.68,0.8],[0.22,0.74,0.5],[0.31,0.66,0.7],[0.44,0.71,0.6],
+    [0.55,0.65,0.9],[0.63,0.76,0.5],[0.72,0.69,0.7],[0.85,0.73,0.6],
+    [0.93,0.67,0.8],[0.17,0.8,0.4],[0.5,0.82,0.5],[0.78,0.81,0.4],
+  ];
+
+  /* Wellen von hinten nach vorn; die vorderste läuft in die Seitenfarbe aus */
+  const waves = [
+    { amp: 0.022, freq: 0.0035, spd: 0.024, off: 0.0, base: 0.66, color: () => 'rgba(18,58,107,0.45)' },
+    { amp: 0.026, freq: 0.0028, spd: 0.034, off: 2.1, base: 0.76, color: () => 'rgba(111,163,224,0.5)' },
+    { amp: 0.030, freq: 0.0022, spd: 0.019, off: 4.2, base: 0.86, color: () => pageBg },
+  ];
+
+  function readPageBg() {
+    pageBg = getComputedStyle(document.body).backgroundColor || '#FBF8F1';
+  }
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    glints = GLINT_SEEDS.map(([fx, fy, base]) => ({ x: fx * W, y: fy * H, base }));
+    readPageBg();
+    if (REDUCED) drawFrame(0);
+  }
+
+  function drawFrame(t) {
+    ctx.clearRect(0, 0, W, H);
+
+    /* Himmel und Meer: Poseidon-Blau nach Ägäis-Tief */
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#2E6CB8');
+    bg.addColorStop(0.55, '#1E5AA8');
+    bg.addColorStop(1, '#123A6B');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    /* Sonnenglitzern auf dem Wasser */
+    ctx.fillStyle = '#FBF8F1';
+    glints.forEach((g, i) => {
+      ctx.globalAlpha = g.base * (0.25 + 0.5 * Math.abs(Math.sin(t * 0.0007 + i * 0.9)));
+      ctx.beginPath();
+      ctx.ellipse(g.x, g.y, 5, 1.1, 0, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    /* Wellen */
+    waves.forEach(w => {
+      const phase = w.off + t * w.spd * 0.001;
+      const yBase = H * w.base;
+      ctx.beginPath();
+      ctx.moveTo(0, H);
+      for (let x = 0; x <= W; x += 4) {
+        ctx.lineTo(x, yBase + Math.sin(x * w.freq + phase) * H * w.amp);
+      }
+      ctx.lineTo(W, H);
+      ctx.closePath();
+      ctx.fillStyle = w.color();
+      ctx.fill();
+    });
+  }
+
+  function loop(t) {
+    drawFrame(t);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start() {
+    if (!running && !REDUCED) { running = true; rafId = requestAnimationFrame(loop); }
+  }
+  function stop() {
+    if (running) { running = false; cancelAnimationFrame(rafId); }
+  }
+
+  window.addEventListener('resize', resize);
+  /* Theme-Wechsel: Seitenfarbe der vordersten Welle neu einlesen */
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readPageBg(); if (REDUCED) drawFrame(0); });
+  new MutationObserver(() => { readPageBg(); if (REDUCED) drawFrame(0); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  resize();
+
+  if (REDUCED) return;
+
+  new IntersectionObserver(([entry]) => {
+    entry.isIntersecting ? start() : stop();
+  }, { threshold: 0.02 }).observe(canvas);
+
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stop() : start();
+  });
+})();
+
+/* ── MENU TABS (Maus + Tastatur) ─────────────────────────────────────── */
+(function () {
+  const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+
+  function activate(btn, focus) {
+    tabs.forEach(b => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+    document.querySelectorAll('.menu-panel').forEach(p =>
+      p.classList.toggle('active', p.id === btn.dataset.target)
+    );
+    if (focus) btn.focus();
+  }
+
+  tabs.forEach((btn, i) => {
+    btn.addEventListener('click', () => activate(btn, false));
+    btn.addEventListener('keydown', e => {
+      let next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); activate(next, true); }
+    });
+  });
+})();
+
+/* ── TODAY'S ROW HIGHLIGHT ──────────────────────────────────────────── */
+(function () {
+  const today = new Date().getDay(); // 0=Sun
+  const row = document.querySelector(`.hours-tbl tr[data-day="${today}"]`);
+  if (row) row.classList.add('today');
+})();
+
+/* ── DYNAMISCHER ÖFFNUNGSSTATUS ─────────────────────────────────────── */
+(function () {
+  // Öffnungszeiten pro Wochentag (0 = Sonntag), null = Ruhetag
+  const HOURS = {
+    0: [[12, 14], [17, 22]],
+    1: [[12, 14], [17, 22]],
+    2: null,
+    3: [[12, 14], [17, 22]],
+    4: [[12, 14], [17, 22]],
+    5: [[12, 14], [17, 22]],
+    6: [[12, 14], [17, 22]],
+  };
+  const DAY_NAMES = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+
+  const pill = document.getElementById('open-status');
+  const label = document.getElementById('open-status-text');
+  if (!pill || !label) return;
+
+  const now = new Date();
+  const day = now.getDay();
+  const t = now.getHours() + now.getMinutes() / 60;
+  const spans = HOURS[day];
+  const fmt = h => `${String(Math.floor(h)).padStart(2, '0')}:${String(Math.round((h % 1) * 60)).padStart(2, '0')}`;
+
+  function nextOpening() {
+    for (let i = 1; i <= 7; i++) {
+      const d = (day + i) % 7;
+      if (HOURS[d]) {
+        const when = i === 1 ? 'morgen' : `am ${DAY_NAMES[d]}`;
+        return `Öffnet ${when} um ${fmt(HOURS[d][0][0])}`;
+      }
+    }
+    return '';
+  }
+
+  let text = '';
+  let open = false;
+
+  if (!spans) {
+    text = `Heute Ruhetag · ${nextOpening()}`;
+  } else {
+    const current = spans.find(([from, to]) => t >= from && t < to);
+    if (current) {
+      open = true;
+      text = `Heute geöffnet bis ${fmt(current[1])} Uhr`;
+    } else {
+      const upcoming = spans.find(([from]) => t < from);
+      text = upcoming
+        ? `Öffnet heute um ${fmt(upcoming[0])} Uhr`
+        : nextOpening();
+    }
+  }
+
+  label.textContent = text;
+  pill.classList.toggle('closed', !open);
+})();
+</script>
+
+</body>
+</html>
