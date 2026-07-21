@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Restaurant Poseidon · Langelsheim-Astfeld</title>
+<title>Restaurant Poseidon – Griechisches Restaurant in Langelsheim-Astfeld | Gyros, Grill &amp; Meeresfrüchte</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Restaurant Poseidon in Langelsheim-Astfeld – authentische griechische Küche, frisch zubereitet. Gyros, Souvlaki, Meeresfrüchte und neue Sommerterrasse. Goslarsche Str. 50, Tel. +49 5326 9699445.">
 <style>
@@ -178,6 +178,29 @@ nav.scrolled {
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav-reserve {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.55rem 1.375rem;
+  background: var(--accent);
+  color: #070F18;
+  font-family: system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-reserve:hover { opacity: 0.85; }
+.nav-reserve:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
 /* ═══ HERO ════════════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
@@ -228,8 +251,18 @@ nav.scrolled {
   letter-spacing: 0.05em;
   margin-bottom: 2.75rem;
 }
+.hero-cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
 .hero-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   padding: 0.9rem 2.5rem;
   border: 1px solid var(--accent);
   color: var(--accent);
@@ -239,10 +272,47 @@ nav.scrolled {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: background 0.22s, color 0.22s;
+  transition: background 0.22s, color 0.22s, opacity 0.22s;
 }
 .hero-cta:hover { background: var(--accent); color: #070F18; }
 .hero-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.hero-cta.primary {
+  background: var(--accent);
+  color: #070F18;
+}
+.hero-cta.primary:hover { opacity: 0.85; }
+
+.hero-info {
+  display: flex;
+  gap: 0.75rem 2.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size: 0.8125rem;
+  color: rgba(239,231,212,0.75);
+}
+.hero-info a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.hero-info a:hover { color: var(--accent); }
+.hero-info a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #57A85C;
+  flex-shrink: 0;
+}
+.status-pill.closed .status-dot { background: #C0554A; }
 
 .hero-scroll-hint {
   position: absolute;
@@ -459,6 +529,55 @@ nav.scrolled {
   color: var(--fg-3);
   font-style: italic;
 }
+.badge {
+  display: inline-block;
+  font-family: system-ui,sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid currentColor;
+  margin-left: 0.5rem;
+  vertical-align: 0.15em;
+  color: #567A3A;
+}
+.badge.vegan { color: #3A7A5C; }
+:root[data-theme="dark"] .badge,
+:root[data-theme="dark"] .badge.vegan { filter: brightness(1.6); }
+@media (prefers-color-scheme: dark) {
+  .badge, .badge.vegan { filter: brightness(1.6); }
+  :root[data-theme="light"] .badge,
+  :root[data-theme="light"] .badge.vegan { filter: none; }
+}
+.allerg {
+  font-family: system-ui,sans-serif;
+  font-size: 0.625rem;
+  color: var(--fg-3);
+  margin-left: 0.35rem;
+  letter-spacing: 0.06em;
+}
+.allergen-legend {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.25rem;
+}
+.allergen-legend summary {
+  cursor: pointer;
+  font-family: system-ui,sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--fg-2);
+  list-style-position: inside;
+}
+.allergen-legend summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.allergen-legend p {
+  font-family: system-ui,sans-serif;
+  font-size: 0.8125rem;
+  color: var(--fg-3);
+  line-height: 1.8;
+  margin-top: 0.75rem;
+  max-width: 62ch;
+}
 
 /* ═══ TERRACE ════════════════════════════════════════════════════════════ */
 .terrace-section {
@@ -642,6 +761,53 @@ footer a {
   transition: color 0.18s;
 }
 footer a:hover { color: var(--accent); }
+.footer-reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid rgba(207,160,48,0.4);
+  color: rgba(239,231,212,0.65);
+  font-family: system-ui,sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color 0.18s, border-color 0.18s;
+}
+.footer-reviews:hover { color: var(--accent); border-color: var(--accent); }
+.legal {
+  max-width: 44rem;
+  margin: 2.5rem auto 0;
+  text-align: left;
+  border-top: 1px solid rgba(239,231,212,0.1);
+}
+.legal details {
+  border-bottom: 1px solid rgba(239,231,212,0.1);
+}
+.legal summary {
+  cursor: pointer;
+  padding: 0.875rem 0.25rem;
+  font-family: system-ui,sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(239,231,212,0.6);
+  list-style-position: inside;
+}
+.legal summary:hover { color: var(--accent); }
+.legal summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.legal-body {
+  padding: 0 0.25rem 1.25rem;
+  font-family: system-ui,sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: rgba(239,231,212,0.45);
+}
+.legal-body p + p { margin-top: 0.75rem; }
+
+/* ═══ MOBILE STICKY CTA ══════════════════════════════════════════════════ */
+.mobile-cta { display: none; }
 
 /* ═══ RESPONSIVE ══════════════════════════════════════════════════════════ */
 @media (max-width: 800px) {
@@ -676,9 +842,37 @@ footer a:hover { color: var(--accent); }
   .menu-panel-wrap { padding: 0 1.375rem; }
   .terrace-section,
   .reserve-section { padding: 4.5rem 1.375rem; }
-  footer { padding: 2.5rem 1.375rem; }
+  footer { padding: 2.5rem 1.375rem 6rem; }
   .meander-row { padding: 0 1.375rem; }
   .dish-list { grid-template-columns: 1fr; }
+  .nav-reserve { padding: 0.55rem 1rem; min-height: 40px; }
+  .hero-cta { width: 100%; max-width: 22rem; }
+  .hero-cta-row { flex-direction: column; align-items: center; }
+
+  .mobile-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    display: flex;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.25);
+  }
+  .mobile-cta a {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    font-family: system-ui,sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .mobile-cta .call { background: var(--accent); color: #070F18; }
+  .mobile-cta .menu-link { background: #0E1C2A; color: #EFE7D4; }
 }
 </style>
 </head>
@@ -687,9 +881,12 @@ footer a:hover { color: var(--accent); }
 <a href="#speisekarte" class="skip-link">Direkt zur Speisekarte</a>
 <nav id="nav">
   <a href="#" class="nav-brand">POSEIDON <em>·</em> ASTFELD</a>
-  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menü öffnen">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-actions">
+    <a href="tel:+4953269699445" class="nav-reserve">Reservieren</a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
   <ul class="nav-links" id="nav-menu" role="list">
     <li><a href="#speisekarte">Speisekarte</a></li>
     <li><a href="#ueber-uns">Über uns</a></li>
@@ -702,10 +899,18 @@ footer a:hover { color: var(--accent); }
 <section class="hero" aria-label="Restaurant Poseidon">
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <p class="hero-eyebrow">Griechische Küche · Langelsheim-Astfeld</p>
+    <p class="hero-eyebrow">Griechische Spezialitäten vom Grill · Langelsheim-Astfeld</p>
     <h1 class="hero-name">Poseidon</h1>
     <p class="hero-tagline">Authentische Aromen des Mittelmeers</p>
-    <a href="#speisekarte" class="hero-cta">Zur Speisekarte</a>
+    <div class="hero-cta-row">
+      <a href="tel:+4953269699445" class="hero-cta primary">Tisch reservieren</a>
+      <a href="#speisekarte" class="hero-cta">Speisekarte ansehen</a>
+    </div>
+    <div class="hero-info">
+      <span class="status-pill" id="open-status"><span class="status-dot"></span><span id="open-status-text">Öffnungszeiten laden …</span></span>
+      <a href="https://maps.google.com/?q=Restaurant+Poseidon+Astfeld,+Goslarsche+Str.+50,+38685+Langelsheim-Astfeld" target="_blank" rel="noopener noreferrer">Goslarsche Str. 50, Langelsheim-Astfeld</a>
+      <a href="tel:+4953269699445">+49 5326 9699445</a>
+    </div>
   </div>
   <div class="hero-scroll-hint" aria-hidden="true">
     <div class="scroll-shaft"></div>
@@ -797,46 +1002,56 @@ footer a:hover { color: var(--accent); }
 
     <div id="tab-vorspeisen" class="menu-panel active" role="tabpanel" aria-labelledby="btn-vorspeisen">
       <div class="dish-list">
-        <div class="dish"><div class="dish-info"><div class="dish-name">Tzatziki mit Pitabrot</div><div class="dish-desc">Joghurt, Knoblauch, Gurke, frischer Dill</div></div><div class="dish-price">4,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Taramosalata</div><div class="dish-desc">Griechische Fischrogencreme, Pitabrot</div></div><div class="dish-price">5,50 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Saganaki</div><div class="dish-desc">Gebratener Schafskäse, Zitrone, Oregano</div></div><div class="dish-price">6,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Dolmades</div><div class="dish-desc">Weinblätter gefüllt mit Reis und Kräutern</div></div><div class="dish-price">5,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Melitzanosalata</div><div class="dish-desc">Gegrillte Aubergine, Knoblauch, Olivenöl</div></div><div class="dish-price">5,50 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Gemischte Mezze</div><div class="dish-desc">Tzatziki, Tarama, Melitzanosalata, Pita</div></div><div class="dish-price">13,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Tzatziki mit Pitabrot<span class="badge">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">Cremiger Joghurt mit Knoblauch, Gurke und frischem Dill</div></div><div class="dish-price">4,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Taramosalata<span class="allerg">F · G</span></div><div class="dish-desc">Griechische Fischrogencreme mit warmem Pitabrot</div></div><div class="dish-price">5,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Saganaki<span class="badge">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">In der Pfanne gebratener Schafskäse mit Zitrone und Oregano</div></div><div class="dish-price">6,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Dolmades<span class="badge vegan">Vegan</span></div><div class="dish-desc">Weinblätter, gefüllt mit Reis und frischen Kräutern</div></div><div class="dish-price">5,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Melitzanosalata<span class="badge vegan">Vegan</span></div><div class="dish-desc">Über der Flamme gegrillte Aubergine, Knoblauch, Olivenöl</div></div><div class="dish-price">5,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gemischte Mezze<span class="allerg">F · G · M</span></div><div class="dish-desc">Tzatziki, Tarama und Melitzanosalata mit Pitabrot</div></div><div class="dish-price">13,90 €</div></div>
       </div>
       <p class="menu-note">Alle Vorspeisen werden mit frischem Pitabrot serviert.</p>
     </div>
 
     <div id="tab-haupt" class="menu-panel" role="tabpanel" aria-labelledby="btn-haupt">
       <div class="dish-list">
-        <div class="dish"><div class="dish-info"><div class="dish-name">Gyros vom Grill</div><div class="dish-desc">Pommes frites, Tzatziki, Zwiebeln</div></div><div class="dish-price">13,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Hähnchen Souvlaki</div><div class="dish-desc">Grillspieß, Zitronenreis, Tzatziki, Salat</div></div><div class="dish-price">14,50 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Moussaka</div><div class="dish-desc">Hackfleisch, Aubergine, Béchamelhaube</div></div><div class="dish-price">13,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Lammkoteletts</div><div class="dish-desc">4 Koteletts, Rosmarinkartoffeln, Salat</div></div><div class="dish-price">18,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Pastitsio</div><div class="dish-desc">Griechischer Nudelauflauf mit Hackfleisch</div></div><div class="dish-price">12,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Gemischter Grillteller</div><div class="dish-desc">Gyros, Souvlaki, Bifteki, Beilagen</div></div><div class="dish-price">21,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gyros vom Grill<span class="allerg">M</span></div><div class="dish-desc">Vom Drehspieß, würzig mariniert, mit Pommes frites, Tzatziki und roten Zwiebeln</div></div><div class="dish-price">13,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Hähnchen Souvlaki<span class="allerg">M</span></div><div class="dish-desc">Zwei Grillspieße mit Zitronenreis, Tzatziki und Bauernsalat</div></div><div class="dish-price">14,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Moussaka<span class="allerg">E · G · M</span></div><div class="dish-desc">Hausgemacht geschichtet: Hackfleisch, Aubergine, Kartoffeln, goldene Béchamelhaube</div></div><div class="dish-price">13,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Lammkoteletts</div><div class="dish-desc">Vier zarte Koteletts vom Grill mit Rosmarinkartoffeln und Salat</div></div><div class="dish-price">18,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pastitsio<span class="allerg">E · G · M</span></div><div class="dish-desc">Griechischer Nudelauflauf mit Hackfleisch und Béchamel, im Ofen überbacken</div></div><div class="dish-price">12,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gemischter Grillteller<span class="allerg">M</span></div><div class="dish-desc">Gyros, Souvlaki und Bifteki vom Holzkohlegrill mit Beilagen nach Wahl</div></div><div class="dish-price">21,90 €</div></div>
       </div>
     </div>
 
     <div id="tab-meer" class="menu-panel" role="tabpanel" aria-labelledby="btn-meer">
       <div class="dish-list">
-        <div class="dish"><div class="dish-info"><div class="dish-name">Gegrillter Oktopus</div><div class="dish-desc">Kapern, Zitrone, Petersilie, Olivenöl</div></div><div class="dish-price">17,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Garnelen Saganaki</div><div class="dish-desc">In Tomatensauce mit Schafskäse überbacken</div></div><div class="dish-price">16,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Dorade vom Grill</div><div class="dish-desc">Ganzer Fisch, Knoblauchbutter, Gemüse</div></div><div class="dish-price">19,50 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Calamari fritti</div><div class="dish-desc">Knusprige Tintenfischringe, Aioli</div></div><div class="dish-price">14,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Gegrillter Oktopus<span class="allerg">W</span></div><div class="dish-desc">Zart gegrillt, mit Kapern, Zitrone, Petersilie und bestem Olivenöl</div></div><div class="dish-price">17,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Garnelen Saganaki<span class="allerg">K · M</span></div><div class="dish-desc">In fruchtiger Tomatensauce mit Schafskäse überbacken</div></div><div class="dish-price">16,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Dorade vom Grill<span class="allerg">F · M</span></div><div class="dish-desc">Ganzer Fisch vom Grill mit Knoblauchbutter und mediterranem Gemüse</div></div><div class="dish-price">19,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Calamari fritti<span class="allerg">E · G · W</span></div><div class="dish-desc">Knusprig ausgebackene Tintenfischringe mit hausgemachter Aioli</div></div><div class="dish-price">14,50 €</div></div>
       </div>
       <p class="menu-note">Unsere Meeresfrüchte kommen täglich frisch aus dem Handel.</p>
     </div>
 
     <div id="tab-salate" class="menu-panel" role="tabpanel" aria-labelledby="btn-salate">
       <div class="dish-list">
-        <div class="dish"><div class="dish-info"><div class="dish-name">Horiatiki</div><div class="dish-desc">Tomate, Gurke, Oliven, Schafskäse, Oregano</div></div><div class="dish-price">9,50 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Griechischer Bauernsalat</div><div class="dish-desc">Mit geröstetem Pitabrot und Olivenöl</div></div><div class="dish-price">8,90 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Rucolasalat</div><div class="dish-desc">Kirschtomaten, Parmesan, Balsamico-Reduktion</div></div><div class="dish-price">8,50 €</div></div>
-        <div class="dish"><div class="dish-info"><div class="dish-name">Salat mit Grillhähnchen</div><div class="dish-desc">Gemischter Salat, Honigsenf-Dressing</div></div><div class="dish-price">13,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Horiatiki<span class="badge">Vegetarisch</span><span class="allerg">M</span></div><div class="dish-desc">Der Klassiker: Tomate, Gurke, Oliven, Schafskäse, Oregano</div></div><div class="dish-price">9,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Griechischer Bauernsalat<span class="badge">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">Knackig frisch, mit geröstetem Pitabrot und Olivenöl</div></div><div class="dish-price">8,90 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Rucolasalat<span class="badge">Vegetarisch</span><span class="allerg">M</span></div><div class="dish-desc">Mit Kirschtomaten, Parmesan und Balsamico-Reduktion</div></div><div class="dish-price">8,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Salat mit Grillhähnchen<span class="allerg">E · SF</span></div><div class="dish-desc">Gemischter Salat mit gegrillten Hähnchenstreifen und Honigsenf-Dressing</div></div><div class="dish-price">13,90 €</div></div>
       </div>
-      <p class="menu-note">Alle Salate vegetarisch; auf Wunsch auch vegan.</p>
+      <p class="menu-note">Viele Salate bereiten wir auf Wunsch auch vegan zu — sprechen Sie uns an.</p>
     </div>
+
+    <details class="allergen-legend">
+      <summary>Allergene &amp; Kennzeichnung</summary>
+      <p>
+        <strong>E</strong> Eier · <strong>F</strong> Fisch · <strong>G</strong> glutenhaltiges Getreide ·
+        <strong>K</strong> Krebstiere · <strong>M</strong> Milch/Laktose · <strong>SF</strong> Senf ·
+        <strong>W</strong> Weichtiere
+      </p>
+      <p>Die vollständige Liste aller Allergene und Zusatzstoffe gemäß LMIV erhalten Sie jederzeit bei unserem Serviceteam. Bei Unverträglichkeiten beraten wir Sie gern persönlich.</p>
+    </details>
 
   </div>
 </section>
@@ -924,10 +1139,10 @@ footer a:hover { color: var(--accent); }
 </section>
 
 <!-- RESERVATION CTA -->
-<section class="reserve-section" aria-label="Tisch reservieren">
+<section id="reservieren" class="reserve-section" aria-label="Tisch reservieren">
   <h2 class="display">Einen Tisch reservieren</h2>
-  <p>Wir freuen uns auf Ihren Besuch — rufen Sie uns einfach an.</p>
-  <a href="tel:+4953269699445" class="btn-solid">+49 5326 9699445</a>
+  <p>Ein Anruf genügt — wir bestätigen Ihre Reservierung sofort.<br>Auch für Gruppen, Familienfeiern und größere Gesellschaften.</p>
+  <a href="tel:+4953269699445" class="btn-solid">Jetzt anrufen: +49 5326 9699445</a>
 </section>
 
 <!-- FOOTER -->
@@ -937,7 +1152,34 @@ footer a:hover { color: var(--accent); }
     Goslarsche Str. 50 · 38685 Langelsheim-Astfeld<br>
     <a href="tel:+4953269699445">+49 5326 9699445</a>
   </p>
+  <a class="footer-reviews" href="https://maps.google.com/?q=Restaurant+Poseidon+Astfeld,+Goslarsche+Str.+50,+38685+Langelsheim-Astfeld" target="_blank" rel="noopener noreferrer">
+    ★ Bewertungen auf Google lesen
+  </a>
+  <div class="legal">
+    <details id="impressum">
+      <summary>Impressum</summary>
+      <div class="legal-body">
+        <p><strong>Angaben gemäß § 5 DDG</strong></p>
+        <p>Restaurant Poseidon Astfeld<br>Goslarsche Str. 50<br>38685 Langelsheim-Astfeld<br>Telefon: +49 5326 9699445</p>
+        <p>[Vom Betreiber zu ergänzen: vollständiger Name der Inhaberin/des Inhabers bzw. Firmierung mit Rechtsform, vertretungsberechtigte Person, E-Mail-Adresse, ggf. Handelsregister und Registernummer, Umsatzsteuer-Identifikationsnummer, zuständige Aufsichtsbehörde.]</p>
+      </div>
+    </details>
+    <details id="datenschutz">
+      <summary>Datenschutzerklärung</summary>
+      <div class="legal-body">
+        <p>Diese Website verwendet keine Cookies, keine Analyse-Dienste und keine extern geladenen Schriftarten. Beim Aufruf werden durch den Hosting-Anbieter technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt des Abrufs) verarbeitet.</p>
+        <p>Links zu Google Maps öffnen den externen Dienst erst nach Ihrem Klick; dabei gelten die Datenschutzbestimmungen von Google.</p>
+        <p>[Vom Betreiber zu ergänzen: verantwortliche Stelle mit Kontaktdaten, Hosting-Anbieter, Angaben zu Betroffenenrechten nach DSGVO, ggf. Datenschutzbeauftragte/r.]</p>
+      </div>
+    </details>
+  </div>
 </footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" aria-label="Schnellzugriff">
+  <a class="menu-link" href="#speisekarte">Speisekarte</a>
+  <a class="call" href="tel:+4953269699445">Reservieren</a>
+</div>
 
 <script type="application/ld+json">
 {
@@ -945,6 +1187,8 @@ footer a:hover { color: var(--accent); }
   "@type": "Restaurant",
   "name": "Restaurant Poseidon Astfeld",
   "servesCuisine": "Griechisch",
+  "priceRange": "€€",
+  "acceptsReservations": "True",
   "telephone": "+49 5326 9699445",
   "address": {
     "@type": "PostalAddress",
@@ -1086,6 +1330,7 @@ window.addEventListener('scroll', () => {
 
   if (REDUCED) return;
 
+  /* Nur animieren, wenn der Hero sichtbar und der Tab aktiv ist */
   new IntersectionObserver(([entry]) => {
     entry.isIntersecting ? start() : stop();
   }, { threshold: 0.02 }).observe(canvas);
@@ -1130,6 +1375,63 @@ window.addEventListener('scroll', () => {
   const today = new Date().getDay(); // 0=Sun
   const row = document.querySelector(`.hours-tbl tr[data-day="${today}"]`);
   if (row) row.classList.add('today');
+})();
+
+/* ── DYNAMISCHER ÖFFNUNGSSTATUS ─────────────────────────────────────── */
+(function () {
+  // Öffnungszeiten pro Wochentag (0 = Sonntag), null = Ruhetag
+  const HOURS = {
+    0: [[12, 14], [17, 22]],
+    1: [[12, 14], [17, 22]],
+    2: null,
+    3: [[12, 14], [17, 22]],
+    4: [[12, 14], [17, 22]],
+    5: [[12, 14], [17, 22]],
+    6: [[12, 14], [17, 22]],
+  };
+  const DAY_NAMES = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+
+  const pill = document.getElementById('open-status');
+  const label = document.getElementById('open-status-text');
+  if (!pill || !label) return;
+
+  const now = new Date();
+  const day = now.getDay();
+  const t = now.getHours() + now.getMinutes() / 60;
+  const spans = HOURS[day];
+  const fmt = h => `${String(Math.floor(h)).padStart(2, '0')}:${String(Math.round((h % 1) * 60)).padStart(2, '0')}`;
+
+  function nextOpening() {
+    for (let i = 1; i <= 7; i++) {
+      const d = (day + i) % 7;
+      if (HOURS[d]) {
+        const when = i === 1 ? 'morgen' : `am ${DAY_NAMES[d]}`;
+        return `Öffnet ${when} um ${fmt(HOURS[d][0][0])}`;
+      }
+    }
+    return '';
+  }
+
+  let text = '';
+  let open = false;
+
+  if (!spans) {
+    text = `Heute Ruhetag · ${nextOpening()}`;
+  } else {
+    const current = spans.find(([from, to]) => t >= from && t < to);
+    if (current) {
+      open = true;
+      text = `Heute geöffnet bis ${fmt(current[1])} Uhr`;
+    } else {
+      const upcoming = spans.find(([from]) => t < from);
+      text = upcoming
+        ? `Öffnet heute um ${fmt(upcoming[0])} Uhr`
+        : nextOpening();
+    }
+  }
+
+  label.textContent = text;
+  pill.classList.toggle('closed', !open);
 })();
 </script>
 
