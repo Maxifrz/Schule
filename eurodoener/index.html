@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Euro Döner Clausthal-Zellerfeld – Döner, Pizza &amp; Pizzeria | Vor Ort · Mitnehmen · Lieferung</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Euro Döner in Clausthal-Zellerfeld – frisch vom Spieß: Döner, Dürüm, Pizza, Calzone &amp; mehr. Vor Ort essen, mitnehmen oder liefern lassen. Adolph-Roemer-Str. 7, täglich 11–23 Uhr, Tel. +49 5323 840230.">
+<style>
+/* ═══ TOKENS — Designsystem Euro Döner ═══════════════════════════════════ */
+:root {
+  --cream:    #FAF6EF;   /* Creme-Weiß */
+  --surface:  #FFFFFF;
+  --kraft:    #C79A6B;   /* Kraftpapier */
+  --kraft-sf: #F0E2CE;   /* helle Kraft-Fläche */
+  --brick:    #8C4A32;   /* Backstein-Braun */
+  --slate:    #2B2E31;   /* Anthrazit-Schiefer */
+  --red:      #D42027;   /* Döner-Rot */
+  --red-hot:  #F0353D;   /* Neon-Rot-Hell */
+  --orange:   #E8791C;   /* Grill-Orange */
+  --green:    #4E9C3A;   /* Salat-Grün */
+  --yellow:   #F2C230;   /* Sonnen-Gelb */
+  --fg:       #2B2E31;
+  --fg-2:     #57544F;
+  --fg-3:     #5C5A57;
+  --rule:     rgba(43,46,49,0.12);
+  --shadow:   0 3px 14px rgba(43,46,49,0.10);
+  --nav-bg:   #24272A;
+  --hero-1:   #34383C;
+  --hero-2:   #1C1E20;
+  --on-dark:  #FAF6EF;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cream:    #17181A;
+    --surface:  #212327;
+    --kraft:    #7C5C39;
+    --kraft-sf: #2A2723;
+    --brick:    #6E3A27;
+    --slate:    #0E0F10;
+    --red:      #E23B42;
+    --red-hot:  #F0353D;
+    --orange:   #F0912E;
+    --green:    #63B84C;
+    --yellow:   #F2C230;
+    --fg:       #F2ECE1;
+    --fg-2:     #C4BDB0;
+    --fg-3:     #8E8A82;
+    --rule:     rgba(242,236,225,0.14);
+    --shadow:   0 3px 14px rgba(0,0,0,0.35);
+    --nav-bg:   #0E0F10;
+    --hero-1:   #26292C;
+    --hero-2:   #111214;
+    --on-dark:  #F2ECE1;
+  }
+}
+:root[data-theme="light"] {
+  --cream: #FAF6EF; --surface: #FFFFFF; --kraft: #C79A6B; --kraft-sf: #F0E2CE;
+  --brick: #8C4A32; --slate: #2B2E31;
+  --red: #D42027; --red-hot: #F0353D; --orange: #E8791C; --green: #4E9C3A; --yellow: #F2C230;
+  --fg: #2B2E31; --fg-2: #57544F; --fg-3: #5C5A57;
+  --rule: rgba(43,46,49,0.12); --shadow: 0 3px 14px rgba(43,46,49,0.10);
+  --nav-bg: #24272A; --hero-1: #34383C; --hero-2: #1C1E20; --on-dark: #FAF6EF;
+}
+:root[data-theme="dark"] {
+  --cream: #17181A; --surface: #212327; --kraft: #7C5C39; --kraft-sf: #2A2723;
+  --brick: #6E3A27; --slate: #0E0F10;
+  --red: #E23B42; --red-hot: #F0353D; --orange: #F0912E; --green: #63B84C; --yellow: #F2C230;
+  --fg: #F2ECE1; --fg-2: #C4BDB0; --fg-3: #8E8A82;
+  --rule: rgba(242,236,225,0.14); --shadow: 0 3px 14px rgba(0,0,0,0.35);
+  --nav-bg: #0E0F10; --hero-1: #26292C; --hero-2: #111214; --on-dark: #F2ECE1;
+}
+
+/* ═══ BASE ═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--fg);
+  font-family: system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; font: inherit; }
+[id] { scroll-margin-top: 5.25rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.display {
+  font-family: 'Oswald','Anton','Bebas Neue',Impact,'Franklin Gothic Medium','Arial Narrow',sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 400;
+  padding: 0.75rem 1.5rem;
+  background: var(--red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Schachbrett-Streifen (aus den Stühlen) */
+.checker {
+  height: 14px;
+  background: repeating-conic-gradient(var(--slate) 0% 25%, var(--cream) 0% 50%) 0 / 14px 14px;
+}
+
+.label {
+  display: inline-block;
+  font-family: 'Oswald','Anton',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+/* ═══ NAV ════════════════════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 2.5rem;
+  background: var(--nav-bg);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 3px 16px rgba(0,0,0,0.3); }
+.brand { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+.brand-icon { width: 2.35rem; height: 2.35rem; flex-shrink: 0; }
+.brand-text {
+  font-family: 'Oswald','Anton',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1;
+}
+.brand-text .accent { color: var(--red-hot); }
+.brand-sub {
+  display: block;
+  font-family: system-ui,sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(250,246,239,0.5);
+  margin-top: 2px;
+}
+.nav-links { list-style: none; display: flex; gap: 1.75rem; }
+.nav-links a {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(250,246,239,0.82);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--orange); }
+.nav-links a:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+
+.nav-actions { display: flex; align-items: center; gap: 0.85rem; }
+.nav-order {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.18s;
+}
+.nav-order:hover { background: var(--red-hot); }
+.nav-order:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem; height: 2.5rem;
+  padding: 0.5rem;
+  background: none;
+  border: 1px solid rgba(250,246,239,0.35);
+  border-radius: 8px;
+}
+.nav-toggle span { display: block; height: 2px; background: var(--on-dark); transition: transform 0.25s, opacity 0.25s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+/* ═══ HERO — Neon-Fassade ════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: 6.5rem 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 30%, var(--hero-1), var(--hero-2));
+}
+#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-inner { position: relative; z-index: 2; max-width: 54rem; padding-bottom: 3rem; }
+.hero-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border: 1px solid rgba(99,184,76,0.55);
+  border-radius: 999px;
+  background: rgba(78,156,58,0.14);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #DFF3D6;
+  margin-bottom: 1.5rem;
+}
+.hero-open .status-dot { width: 9px; height: 9px; border-radius: 50%; background: #6FD397; flex-shrink: 0; box-shadow: 0 0 8px #6FD397; }
+.hero-open.closed { border-color: rgba(240,53,61,0.5); background: rgba(212,32,39,0.14); color: #F5D3D3; }
+.hero-open.closed .status-dot { background: #F0907F; box-shadow: 0 0 8px #F0907F; }
+
+.hero-name {
+  font-family: 'Oswald','Anton','Bebas Neue',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(3.5rem, 13vw, 8.5rem);
+  letter-spacing: 0.03em;
+  line-height: 0.92;
+  color: #FFECEC;
+  text-shadow:
+    0 0 4px rgba(255,120,124,0.95),
+    0 0 12px rgba(240,53,61,0.85),
+    0 0 26px rgba(212,32,39,0.7),
+    0 0 46px rgba(212,32,39,0.5);
+}
+.hero-name .line2 { color: #FFF7EC; text-shadow:
+    0 0 4px rgba(255,190,120,0.9),
+    0 0 12px rgba(232,121,28,0.85),
+    0 0 26px rgba(232,121,28,0.65),
+    0 0 46px rgba(232,121,28,0.45); }
+.flicker { animation: flicker 7s linear infinite; }
+@keyframes flicker {
+  0%, 42%, 44%, 63%, 65%, 100% { opacity: 1; }
+  43%   { opacity: 0.55; }
+  64%   { opacity: 0.7; }
+  64.5% { opacity: 0.4; }
+}
+@media (prefers-reduced-motion: reduce) { .flicker { animation: none; } html { scroll-behavior: auto; } }
+
+.hero-tagline {
+  font-size: clamp(1rem, 2.2vw, 1.3125rem);
+  font-weight: 500;
+  color: rgba(250,246,239,0.85);
+  margin: 1.25rem auto 1.75rem;
+  max-width: 34ch;
+}
+.mode-chips { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.mode-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(250,246,239,0.08);
+  border: 1px solid rgba(250,246,239,0.22);
+  color: var(--on-dark);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.mode-chip svg { width: 1.05rem; height: 1.05rem; color: var(--orange); }
+
+.hero-cta-row { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-family: 'Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.08s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--red); color: #fff; box-shadow: 0 6px 20px rgba(212,32,39,0.4); }
+.btn-primary:hover { background: var(--red-hot); }
+.btn-ghost { border: 1.5px solid rgba(250,246,239,0.7); color: var(--on-dark); }
+.btn-ghost:hover { background: rgba(250,246,239,0.12); }
+.btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+.hero-info {
+  display: flex;
+  gap: 0.6rem 1.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  color: rgba(250,246,239,0.82);
+  margin-bottom: 1.1rem;
+}
+.hero-info a { color: inherit; text-decoration: none; transition: color 0.18s; }
+.hero-info a:hover { color: var(--orange); }
+.hero-info a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+.hero-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(250,246,239,0.9);
+  text-decoration: none;
+}
+.hero-rating:hover { color: var(--yellow); }
+.hero-rating:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.stars { position: relative; display: inline-block; letter-spacing: 0.08em; line-height: 1; color: rgba(250,246,239,0.28); }
+.stars::before { content: "★★★★★"; }
+.stars .fill { position: absolute; top: 0; left: 0; width: 90%; overflow: hidden; white-space: nowrap; color: var(--yellow); }
+.stars .fill::before { content: "★★★★★"; }
+
+.hero-checker {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+}
+
+/* ═══ ORDER MODES ════════════════════════════════════════════════════════ */
+.modes-section { max-width: 76rem; margin: 0 auto; padding: 5rem 2.5rem; }
+.section-head { text-align: center; margin-bottom: 3rem; }
+.section-head .label { margin-bottom: 0.75rem; }
+.section-head h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+.section-head p { color: var(--fg-2); margin-top: 0.75rem; font-size: 1.0625rem; }
+.modes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.mode-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.mode-card .mode-ico {
+  width: 3rem; height: 3rem;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  background: rgba(232,121,28,0.14);
+  color: var(--orange);
+  margin-bottom: 1.1rem;
+}
+.mode-card .mode-ico svg { width: 1.6rem; height: 1.6rem; }
+.mode-card h3 { font-size: 1.375rem; margin-bottom: 0.5rem; }
+.mode-card p { color: var(--fg-2); font-size: 0.9375rem; margin-bottom: 1.25rem; flex: 1; }
+.mode-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  background: var(--slate);
+  color: var(--on-dark);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: background 0.18s;
+}
+.mode-link.accent { background: var(--red); color: #fff; }
+.mode-link.accent:hover { background: var(--red-hot); }
+.mode-link:not(.accent):hover { background: var(--brick); }
+.mode-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+.mode-note { font-size: 0.75rem; color: var(--fg-3); margin-top: 0.85rem; font-style: italic; }
+
+/* ═══ ABOUT ══════════════════════════════════════════════════════════════ */
+.about-section { background: var(--brick); color: #F7ECE2; }
+.about-inner {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 5rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about-text .label { color: #FFDA5C; margin-bottom: 0.9rem; }
+.about-text h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); margin-bottom: 1.25rem; }
+.about-text p { color: rgba(247,236,226,0.88); max-width: 46ch; }
+.about-text p + p { margin-top: 1rem; }
+.about-kpis { display: grid; gap: 1.25rem; }
+.kpi {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: rgba(0,0,0,0.16);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+}
+.kpi svg { width: 1.9rem; height: 1.9rem; color: var(--yellow); flex-shrink: 0; }
+.kpi-title { font-family: 'Oswald',Impact,'Arial Narrow',sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 1rem; margin-bottom: 0.15rem; }
+.kpi-desc { font-size: 0.875rem; color: rgba(247,236,226,0.8); }
+
+/* ═══ MENU ═══════════════════════════════════════════════════════════════ */
+.menu-section { padding: 5rem 0; background: var(--kraft-sf); }
+.menu-head { text-align: center; padding: 0 2.5rem; margin-bottom: 2.5rem; }
+.menu-head .label { margin-bottom: 0.75rem; color: #B01A20; }
+@media (prefers-color-scheme: dark) { .menu-head .label { color: var(--red); } }
+:root[data-theme="light"] .menu-head .label { color: #B01A20; }
+:root[data-theme="dark"] .menu-head .label { color: var(--red); }
+.menu-head h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+.menu-head p { color: var(--fg-2); margin-top: 0.6rem; font-style: italic; }
+.tab-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; padding: 0 2.5rem; margin-bottom: 2.5rem; }
+.tab-btn {
+  min-height: 44px;
+  padding: 0.55rem 1.25rem;
+  font-family: 'Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  transition: color 0.18s, background 0.18s, border-color 0.18s;
+}
+.tab-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.tab-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
+.tab-btn:not(.active):hover { color: var(--red); border-color: var(--red); }
+.menu-panel-wrap { max-width: 76rem; margin: 0 auto; padding: 0 2.5rem; }
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+.dish-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(20.5rem, 1fr)); gap: 1rem; }
+.dish {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.dish-info { flex: 1; min-width: 0; }
+.dish-name {
+  font-family: 'Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 1.0625rem;
+  color: var(--fg);
+}
+.dish-desc { font-size: 0.85rem; color: var(--fg-3); margin-top: 0.25rem; line-height: 1.45; }
+.dish-price {
+  font-family: 'Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--red);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.1rem;
+}
+.badge {
+  display: inline-block;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.14rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.45rem;
+  vertical-align: 0.16em;
+}
+.badge.popular { background: #A8530E; color: #fff; }
+.badge.veg { background: #2E7A1E; color: #fff; }
+.allerg { font-size: 0.625rem; color: var(--fg-3); margin-left: 0.35rem; letter-spacing: 0.05em; }
+.menu-note { margin-top: 1.5rem; font-size: 0.8125rem; color: var(--fg-3); font-style: italic; }
+.allergen-legend { margin-top: 2.25rem; border-top: 1px solid var(--rule); padding-top: 1.1rem; }
+.allergen-legend summary { cursor: pointer; padding: 0.5rem 0.25rem; font-size: 0.8125rem; font-weight: 600; color: var(--fg-2); list-style-position: inside; }
+.allergen-legend summary:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.allergen-legend p { font-size: 0.8125rem; color: var(--fg-3); line-height: 1.75; margin-top: 0.7rem; max-width: 64ch; }
+
+/* ═══ STOREFRONT / HOURS + CONTACT ═══════════════════════════════════════ */
+.info-section { max-width: 76rem; margin: 0 auto; padding: 5rem 2.5rem; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
+.info-block .label { margin-bottom: 0.9rem; }
+.info-block h3 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 1.75rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--rule); }
+.hours-tbl { width: 100%; border-collapse: collapse; }
+.hours-tbl td { font-size: 0.9375rem; padding: 0.3rem 0 0.55rem; vertical-align: top; }
+.hours-tbl td:first-child { color: var(--fg-2); font-weight: 600; padding-right: 2rem; white-space: nowrap; width: 8rem; }
+.hours-tbl td:last-child { color: var(--fg); font-variant-numeric: tabular-nums; }
+.hours-tbl tr.today td:first-child { color: var(--red); }
+.hours-tbl tr.today td:last-child { color: var(--fg); font-weight: 700; }
+.contact-items { display: flex; flex-direction: column; gap: 1.1rem; }
+.contact-item { display: flex; gap: 0.9rem; align-items: flex-start; }
+.contact-item svg { flex-shrink: 0; width: 1.25rem; height: 1.25rem; color: var(--red); margin-top: 0.15rem; }
+.contact-item-body { font-size: 0.9375rem; color: var(--fg-2); line-height: 1.5; }
+.contact-item-body a { color: var(--fg-2); text-decoration: none; transition: color 0.18s; }
+.contact-item-body a:hover { color: var(--red); }
+.contact-item-body a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  min-height: 44px; margin-top: 1.5rem; padding: 0.7rem 1.5rem;
+  border: 1.5px solid var(--slate); border-radius: 8px;
+  color: var(--fg); font-family: 'Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700; font-size: 0.8125rem; letter-spacing: 0.05em; text-transform: uppercase;
+  text-decoration: none; transition: background 0.18s, color 0.18s;
+}
+.btn-outline:hover { background: var(--slate); color: var(--on-dark); }
+.btn-outline:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+/* ═══ ORDER BAND ═════════════════════════════════════════════════════════ */
+.band { position: relative; background: var(--red); color: #fff; text-align: center; padding: 4rem 2.5rem; }
+.band h2 { font-size: clamp(1.9rem, 4.5vw, 3rem); margin-bottom: 0.6rem; }
+.band p { font-size: 1.0625rem; opacity: 0.92; margin-bottom: 1.75rem; }
+.band .btn-white { background: #fff; color: var(--red); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+.band .btn-white:hover { background: var(--yellow); color: var(--slate); }
+
+/* ═══ FOOTER ═════════════════════════════════════════════════════════════ */
+footer { background: var(--slate); color: rgba(250,246,239,0.55); text-align: center; }
+.footer-inner { padding: 3rem 2.5rem; }
+.footer-brand { font-family: 'Oswald',Impact,'Arial Narrow',sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; margin-bottom: 0.6rem; }
+.footer-brand .accent { color: var(--red-hot); }
+.footer-inner > p { font-size: 0.8125rem; line-height: 1.7; }
+.footer-inner > p a { color: inherit; text-decoration: none; transition: color 0.18s; }
+.footer-inner > p a:hover { color: var(--orange); }
+.footer-reviews {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 1.4rem; padding: 0.55rem 1.2rem;
+  border: 1px solid rgba(242,194,48,0.45); border-radius: 8px;
+  color: rgba(250,246,239,0.8); font-size: 0.8125rem; font-weight: 600;
+  text-decoration: none; transition: color 0.18s, border-color 0.18s;
+}
+.footer-reviews:hover { color: var(--yellow); border-color: var(--yellow); }
+.footer-inner > p a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+.footer-reviews:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.mobile-cta a:focus-visible { outline: 2px solid var(--yellow); outline-offset: -3px; }
+.footer-reviews .stars { font-size: 0.875rem; }
+.legal { max-width: 44rem; margin: 2.25rem auto 0; text-align: left; border-top: 1px solid rgba(250,246,239,0.12); }
+.legal details { border-bottom: 1px solid rgba(250,246,239,0.12); }
+.legal summary { cursor: pointer; padding: 0.85rem 0.25rem; font-size: 0.8125rem; font-weight: 600; color: rgba(250,246,239,0.65); list-style-position: inside; }
+.legal summary:hover { color: var(--orange); }
+.legal summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.legal-body { padding: 0 0.25rem 1.2rem; font-size: 0.75rem; line-height: 1.75; color: rgba(250,246,239,0.42); }
+.legal-body p + p { margin-top: 0.7rem; }
+
+/* ═══ MOBILE STICKY CTA ══════════════════════════════════════════════════ */
+.mobile-cta { display: none; }
+
+/* ═══ RESPONSIVE ═════════════════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .modes-grid { grid-template-columns: 1fr; }
+  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .info-grid { grid-template-columns: 1fr; gap: 3rem; }
+  nav { padding: 0.7rem 1.5rem; flex-wrap: wrap; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    order: 3; display: none; flex-basis: 100%; flex-direction: column; gap: 0;
+    margin-top: 0.75rem; border-top: 1px solid rgba(250,246,239,0.14);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { display: block; padding: 0.95rem 0.25rem; border-bottom: 1px solid rgba(250,246,239,0.08); }
+}
+@media (max-width: 720px) {
+  nav { padding: 0.7rem 1.15rem; }
+  .hero { padding: 6rem 1.15rem 0; }
+  .hero-cta-row { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; }
+  .modes-section, .info-section { padding: 3.5rem 1.15rem; }
+  .about-inner { padding: 3.5rem 1.15rem; }
+  .menu-section { padding: 3.5rem 0; }
+  .menu-head, .tab-bar, .menu-panel-wrap { padding-left: 1.15rem; padding-right: 1.15rem; }
+  .band { padding: 3.5rem 1.15rem; }
+  .footer-inner { padding: 2.5rem 1.15rem 6.5rem; }
+  .dish-list { grid-template-columns: 1fr; }
+  .nav-order .nav-order-full { display: none; }
+
+  .mobile-cta {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+    display: flex; box-shadow: 0 -3px 14px rgba(0,0,0,0.28);
+  }
+  .mobile-cta a {
+    flex: 1;
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    min-height: 54px;
+    font-family: 'Oswald',Impact,'Arial Narrow',sans-serif;
+    font-weight: 700; font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  .mobile-cta .m-menu { background: var(--slate); color: var(--on-dark); }
+  .mobile-cta .m-order { background: var(--red); color: #fff; }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<a href="#speisekarte" class="skip-link">Direkt zur Speisekarte</a>
+<nav id="nav">
+  <a href="#" class="brand" aria-label="Euro Döner Startseite">
+    <svg class="brand-icon" viewBox="0 0 44 44" aria-hidden="true">
+      <circle cx="22" cy="22" r="21" fill="none" stroke="#D42027" stroke-width="2.5"/>
+      <path d="M22 9c-4.4 0-8 2.4-8 5.4S17.6 20 22 20s8-2.4 8-5.6S26.4 9 22 9z" fill="#E8791C"/>
+      <path d="M15 14.5c0 3 3.1 5.5 7 5.5s7-2.5 7-5.5" fill="none" stroke="#D42027" stroke-width="0"/>
+      <rect x="20.6" y="8" width="2.8" height="27" rx="1.4" fill="#C79A6B"/>
+      <path d="M14.5 20c0 3.2 3.4 5.6 7.5 5.6s7.5-2.4 7.5-5.6" fill="#E8791C"/>
+      <path d="M15.4 25c0 3 3 5.2 6.6 5.2s6.6-2.2 6.6-5.2" fill="#D9691A"/>
+      <circle cx="22" cy="35.5" r="2" fill="#FAF6EF"/>
+    </svg>
+    <span class="brand-text">EURO <span class="accent">DÖNER</span>
+      <span class="brand-sub">Döner · Pizza · Clausthal</span>
+    </span>
+  </a>
+  <ul class="nav-links" id="nav-menu" role="list">
+    <li><a href="#bestellen">Bestellen</a></li>
+    <li><a href="#speisekarte">Speisekarte</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#kontakt">Öffnungszeiten</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="tel:+495323840230" class="nav-order" aria-label="Bestellen – Euro Döner anrufen unter 05323 840230">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .7-.2 1l-2.3 2.2z"/></svg>
+      <span class="nav-order-full">Bestellen</span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Euro Döner">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <span class="hero-open" id="open-status"><span class="status-dot"></span><span id="open-status-text">Öffnungszeiten laden …</span></span>
+    <h1 class="hero-name flicker">EURO<br><span class="line2">DÖNER</span></h1>
+    <p class="hero-tagline">Frisch, herzhaft, für jeden — zum Bleiben oder Mitnehmen.</p>
+    <div class="mode-chips" aria-label="So bekommst du dein Essen">
+      <span class="mode-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v2H4zm2 4h12l-1 12H7L6 8zm3 3v6h2v-6H9zm4 0v6h2v-6h-2z"/></svg>Vor Ort essen</span>
+      <span class="mode-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h12l1 4H5l1-4zm-1 6h14l-1 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 8zm4 3v7h2v-7H9zm4 0v7h2v-7h-2z"/></svg>Mitnehmen</span>
+      <span class="mode-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h11v9H3zM14 9h3.5l2.5 3v3h-6zM6.5 17.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zm10 0a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5z"/></svg>Lieferung</span>
+    </div>
+    <div class="hero-cta-row">
+      <a href="tel:+495323840230" class="btn btn-primary">Jetzt bestellen</a>
+      <a href="#speisekarte" class="btn btn-ghost">Speisekarte ansehen</a>
+    </div>
+    <div class="hero-info">
+      <a href="https://maps.google.com/?q=Euro+D%C3%B6ner,+Adolph-Roemer-Stra%C3%9Fe+7,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer">Adolph-Roemer-Str. 7, Clausthal-Zellerfeld</a>
+      <a href="tel:+495323840230">+49 5323 840230</a>
+    </div>
+    <a class="hero-rating" href="https://maps.google.com/?q=Euro+D%C3%B6ner,+Adolph-Roemer-Stra%C3%9Fe+7,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer">
+      <span class="stars" aria-hidden="true"><span class="fill"></span></span> 4,5 von 5 bei Google
+    </a>
+  </div>
+  <div class="hero-checker checker" aria-hidden="true"></div>
+</section>
+
+<!-- ORDER MODES -->
+<section id="bestellen" aria-label="Bestellen">
+  <div class="modes-section">
+    <div class="section-head">
+      <span class="label">Bestellen</span>
+      <h2 class="display">So kommst du an dein Essen</h2>
+      <p>Vor Ort, zum Mitnehmen oder direkt zu dir nach Hause — du entscheidest.</p>
+    </div>
+    <div class="modes-grid">
+      <div class="mode-card">
+        <div class="mode-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v2H4zm2 4h12l-1 12H7L6 8zm3 3v6h2v-6H9zm4 0v6h2v-6h-2z"/></svg></div>
+        <h3 class="display">Vor Ort essen</h3>
+        <p>Gemütlich im Diner: warmer Backstein, Globus-Lampen und Platz für die ganze Runde. Komm vorbei — wir haben täglich für dich geöffnet.</p>
+        <a href="#kontakt" class="mode-link">Öffnungszeiten &amp; Anfahrt</a>
+      </div>
+      <div class="mode-card">
+        <div class="mode-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h12l1 4H5l1-4zm-1 6h14l-1 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 8zm4 3v7h2v-7H9zm4 0v7h2v-7h-2z"/></svg></div>
+        <h3 class="display">Mitnehmen</h3>
+        <p>In wenigen Minuten frisch vom Spieß. Ruf kurz an, wir machen alles fertig — du holst es einfach ab, wenn's dir passt.</p>
+        <a href="tel:+495323840230" class="mode-link accent">Anrufen &amp; vorbestellen</a>
+      </div>
+      <div class="mode-card">
+        <div class="mode-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h11v9H3zM14 9h3.5l2.5 3v3h-6zM6.5 17.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zm10 0a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5z"/></svg></div>
+        <h3 class="display">Lieferung</h3>
+        <p>Hunger, aber keine Lust rauszugehen? Wir liefern dir dein Essen heiß nach Hause. Ein Anruf genügt.</p>
+        <a href="tel:+495323840230" class="mode-link accent">Liefern lassen</a>
+        <p class="mode-note">Liefergebiet, Mindestbestellwert und Bestellportale trägt der Betreiber hier ein.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="ueber-uns" class="about-section" aria-label="Über uns">
+  <div class="about-inner">
+    <div class="about-text">
+      <span class="label">Über uns</span>
+      <h2 class="display">Dein Imbiss in Clausthal</h2>
+      <p>Bei Euro Döner gibt's ehrliches Street Food ohne Schnickschnack: Fleisch frisch vom Drehspieß, knuspriger Pizzateig aus dem Ofen und Zutaten, die man sieht und schmeckt. Schnell, sättigend und zu einem Preis, der passt.</p>
+      <p>Ob mittags zwischen den Vorlesungen, abends mit Freunden oder spät nach der Schicht — bei uns bist du richtig. Zum Bleiben oder Mitnehmen, ganz wie du magst.</p>
+    </div>
+    <div class="about-kpis">
+      <div class="kpi">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 1.5 3.5 4 3.5 7a8 8 0 1 1-16 0c0-4 3-6 4-9 .8 1.2 1 2 4-1z"/></svg>
+        <div>
+          <div class="kpi-title">Frisch vom Spieß</div>
+          <div class="kpi-desc">Fleisch und Teig täglich frisch zubereitet — nichts von gestern.</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l3 6 6 .9-4.5 4.3 1.1 6.3L12 17l-5.6 3 1.1-6.3L3 8l6-.9z"/></svg>
+        <div>
+          <div class="kpi-title">Fair &amp; günstig</div>
+          <div class="kpi-desc">Große Portionen zum kleinen Preis — Comfort Food für jeden Geldbeutel.</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>
+        <div>
+          <div class="kpi-title">Schnell &amp; für alle</div>
+          <div class="kpi-desc">In Minuten fertig, dazu vegetarische und vegane Optionen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker" aria-hidden="true"></div>
+
+<!-- MENU -->
+<section id="speisekarte" class="menu-section" aria-label="Speisekarte">
+  <div class="menu-head">
+    <span class="label">Speisekarte</span>
+    <h2 class="display">Frisch vom Spieß &amp; aus dem Ofen</h2>
+    <p>Alle Preise in Euro, inkl. MwSt. — Extras auf Wunsch.</p>
+  </div>
+
+  <div class="tab-bar" role="tablist" aria-label="Speisekarten-Kategorien">
+    <button class="tab-btn active" id="btn-doener" role="tab" data-target="tab-doener" aria-controls="tab-doener" aria-selected="true">Döner &amp; Dürüm</button>
+    <button class="tab-btn" id="btn-pizza" role="tab" data-target="tab-pizza" aria-controls="tab-pizza" aria-selected="false" tabindex="-1">Pizza</button>
+    <button class="tab-btn" id="btn-ofen" role="tab" data-target="tab-ofen" aria-controls="tab-ofen" aria-selected="false" tabindex="-1">Calzone &amp; Ofen</button>
+    <button class="tab-btn" id="btn-snacks" role="tab" data-target="tab-snacks" aria-controls="tab-snacks" aria-selected="false" tabindex="-1">Snacks &amp; Beilagen</button>
+    <button class="tab-btn" id="btn-drinks" role="tab" data-target="tab-drinks" aria-controls="tab-drinks" aria-selected="false" tabindex="-1">Getränke</button>
+  </div>
+
+  <div class="menu-panel-wrap">
+
+    <div id="tab-doener" class="menu-panel active" role="tabpanel" aria-labelledby="btn-doener">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Döner Kebab<span class="badge popular">Beliebt</span><span class="allerg">G · M · SF</span></div><div class="dish-desc">Saftiges Fleisch frisch vom Spieß, knackiger Salat, Zwiebeln, Tomaten und Sauce nach Wahl im warmen Fladenbrot</div></div><div class="dish-price">6,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Hähnchendöner<span class="allerg">G · M · SF</span></div><div class="dish-desc">Zartes Hähnchenfleisch vom Spieß mit frischem Salat und cremiger Sauce</div></div><div class="dish-price">6,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Dürüm Döner<span class="allerg">G · M · SF</span></div><div class="dish-desc">Fleisch, Salat und Sauce fest eingerollt im dünnen Yufka-Teigfladen</div></div><div class="dish-price">7,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Falafel-Döner<span class="badge veg">Vegan</span><span class="allerg">G · SE</span></div><div class="dish-desc">Knusprige Kichererbsenbällchen mit Salat und cremiger Sesam-Sauce</div></div><div class="dish-price">6,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Dönerbox mit Pommes<span class="allerg">G · M</span></div><div class="dish-desc">Fleisch auf goldenen Pommes, überbacken mit Käse und Sauce</div></div><div class="dish-price">7,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Döner-Teller<span class="allerg">M · SF</span></div><div class="dish-desc">Große Portion Fleisch mit Pommes oder Reis, frischem Salat und Sauce</div></div><div class="dish-price">9,50 €</div></div>
+      </div>
+      <p class="menu-note">Saucen zur Wahl: Kräuter, Knoblauch, Cocktail oder scharf.</p>
+    </div>
+
+    <div id="tab-pizza" class="menu-panel" role="tabpanel" aria-labelledby="btn-pizza">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pizza Margherita<span class="badge veg">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">Tomatensauce, Mozzarella und frisches Basilikum auf knusprigem Boden</div></div><div class="dish-price">7,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pizza Döner<span class="badge popular">Beliebt</span><span class="allerg">G · M</span></div><div class="dish-desc">Mit Dönerfleisch, Zwiebeln, Peperoni und würziger Knoblauchsauce</div></div><div class="dish-price">8,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pizza Salami<span class="allerg">G · M</span></div><div class="dish-desc">Würzige Salami auf reichlich Käse und fruchtiger Tomatensauce</div></div><div class="dish-price">7,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pizza Vegetaria<span class="badge veg">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">Paprika, Champignons, Zwiebeln, Mais und Oliven</div></div><div class="dish-price">8,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pizza Thunfisch<span class="allerg">F · G · M</span></div><div class="dish-desc">Thunfisch mit Zwiebeln und extra Mozzarella</div></div><div class="dish-price">8,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pizza Hawaii<span class="allerg">G · M</span></div><div class="dish-desc">Zarter Schinken, süße Ananas und doppelt Käse</div></div><div class="dish-price">8,00 €</div></div>
+      </div>
+      <p class="menu-note">Alle Pizzen ø 30 cm. Extra-Zutaten je 1,00 €.</p>
+    </div>
+
+    <div id="tab-ofen" class="menu-panel" role="tabpanel" aria-labelledby="btn-ofen">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Calzone Classico<span class="badge popular">Beliebt</span><span class="allerg">G · M</span></div><div class="dish-desc">Gefüllte Teigtasche mit Schinken, Champignons und extra Käse</div></div><div class="dish-price">8,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Calzone Döner<span class="allerg">G · M</span></div><div class="dish-desc">Mit Dönerfleisch, Zwiebeln und Käse gefüllt, dazu Knoblauchsauce</div></div><div class="dish-price">9,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Lahmacun<span class="allerg">G</span></div><div class="dish-desc">Türkischer Teigfladen mit würzigem Hackfleisch, mit Salat zum Rollen</div></div><div class="dish-price">5,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Börek mit Käse<span class="badge veg">Vegetarisch</span><span class="allerg">G · M</span></div><div class="dish-desc">Knuspriger Blätterteig, gefüllt mit würzigem Schafskäse</div></div><div class="dish-price">5,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Nudeln Bolognese<span class="allerg">G</span></div><div class="dish-desc">Pasta mit kräftiger, lang geschmorter Hackfleischsauce</div></div><div class="dish-price">7,50 €</div></div>
+      </div>
+    </div>
+
+    <div id="tab-snacks" class="menu-panel" role="tabpanel" aria-labelledby="btn-snacks">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pommes frites<span class="badge veg">Vegan</span></div><div class="dish-desc">Goldknusprig frittiert, mit Ketchup oder Mayo</div></div><div class="dish-price">3,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Pommes überbacken<span class="badge veg">Vegetarisch</span><span class="allerg">M</span></div><div class="dish-desc">Mit geschmolzenem Käse und Sauce nach Wahl</div></div><div class="dish-price">4,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Chicken Nuggets (6 St.)<span class="allerg">G</span></div><div class="dish-desc">Knusprig paniert, mit Dip deiner Wahl</div></div><div class="dish-price">4,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Falafel-Portion (6 St.)<span class="badge veg">Vegan</span><span class="allerg">G · SE</span></div><div class="dish-desc">Sechs Kichererbsenbällchen mit cremiger Sesam-Sauce</div></div><div class="dish-price">4,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Salatbox<span class="badge veg">Vegetarisch</span><span class="allerg">SF</span></div><div class="dish-desc">Frischer gemischter Salat mit Dressing nach Wahl</div></div><div class="dish-price">4,50 €</div></div>
+      </div>
+    </div>
+
+    <div id="tab-drinks" class="menu-panel" role="tabpanel" aria-labelledby="btn-drinks">
+      <div class="dish-list">
+        <div class="dish"><div class="dish-info"><div class="dish-name">Ayran 0,25 l<span class="allerg">M</span></div><div class="dish-desc">Erfrischendes türkisches Joghurtgetränk, gut gekühlt</div></div><div class="dish-price">1,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Cola · Fanta · Sprite 0,33 l</div><div class="dish-desc">Eiskalt aus der Flasche</div></div><div class="dish-price">2,00 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Uludağ Limonade 0,33 l</div><div class="dish-desc">Türkische Limonade, spritzig und süß</div></div><div class="dish-price">2,20 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Wasser 0,5 l</div><div class="dish-desc">Still oder mit Kohlensäure</div></div><div class="dish-price">1,50 €</div></div>
+        <div class="dish"><div class="dish-info"><div class="dish-name">Red Bull 0,25 l</div><div class="dish-desc">Für den Extra-Kick zwischendurch</div></div><div class="dish-price">2,50 €</div></div>
+      </div>
+    </div>
+
+    <details class="allergen-legend">
+      <summary>Allergene &amp; Kennzeichnung</summary>
+      <p>
+        <strong>F</strong> Fisch · <strong>G</strong> glutenhaltiges Getreide ·
+        <strong>M</strong> Milch/Laktose · <strong>SE</strong> Sesam · <strong>SF</strong> Senf
+      </p>
+      <p>Die vollständige Liste aller Allergene und Zusatzstoffe gemäß LMIV bekommst du jederzeit an der Theke. Bei Unverträglichkeiten sprich uns einfach an — wir helfen dir weiter.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- STOREFRONT / HOURS + CONTACT -->
+<section id="kontakt" aria-label="Öffnungszeiten und Kontakt">
+  <div class="info-section">
+    <h2 class="sr-only">Öffnungszeiten &amp; Kontakt</h2>
+    <div class="info-grid">
+
+      <div class="info-block">
+        <span class="label">Öffnungszeiten</span>
+        <h3 class="display">Täglich für dich da</h3>
+        <table class="hours-tbl">
+          <tbody>
+            <tr data-day="1"><td>Montag</td><td>11:00 – 23:00</td></tr>
+            <tr data-day="2"><td>Dienstag</td><td>11:00 – 23:00</td></tr>
+            <tr data-day="3"><td>Mittwoch</td><td>11:00 – 23:00</td></tr>
+            <tr data-day="4"><td>Donnerstag</td><td>11:00 – 23:00</td></tr>
+            <tr data-day="5"><td>Freitag</td><td>11:00 – 23:00</td></tr>
+            <tr data-day="6"><td>Samstag</td><td>11:00 – 23:00</td></tr>
+            <tr data-day="0"><td>Sonntag</td><td>11:00 – 23:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-block">
+        <span class="label">Kontakt &amp; Anfahrt</span>
+        <h3 class="display">Besuch uns</h3>
+        <div class="contact-items">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+            </svg>
+            <div class="contact-item-body">Adolph-Roemer-Straße 7<br>38678 Clausthal-Zellerfeld</div>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+            </svg>
+            <div class="contact-item-body"><a href="tel:+495323840230">+49 5323 840230</a></div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Euro+D%C3%B6ner,+Adolph-Roemer-Stra%C3%9Fe+7,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+          </svg>
+          Route planen
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ORDER BAND -->
+<section class="band" aria-label="Jetzt bestellen">
+  <h2 class="display">Hunger? Wir liefern.</h2>
+  <p>Frisch vom Spieß, heiß zu dir nach Hause oder abholbereit an der Theke.</p>
+  <a href="tel:+495323840230" class="btn btn-white">Jetzt anrufen: +49 5323 840230</a>
+</section>
+
+<div class="checker" aria-hidden="true"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">EURO <span class="accent">DÖNER</span></div>
+    <p>
+      Döner · Pizza · Pizzeria · Adolph-Roemer-Straße 7 · 38678 Clausthal-Zellerfeld<br>
+      <a href="tel:+495323840230">+49 5323 840230</a>
+    </p>
+    <a class="footer-reviews" href="https://maps.google.com/?q=Euro+D%C3%B6ner,+Adolph-Roemer-Stra%C3%9Fe+7,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer">
+      <span class="stars" aria-hidden="true"><span class="fill"></span></span> 4,5 bei Google — Bewertungen lesen
+    </a>
+    <div class="legal">
+      <details id="impressum">
+        <summary>Impressum</summary>
+        <div class="legal-body">
+          <p><strong>Angaben gemäß § 5 DDG</strong></p>
+          <p>Euro Döner<br>Adolph-Roemer-Straße 7<br>38678 Clausthal-Zellerfeld<br>Telefon: +49 5323 840230</p>
+          <p>[Vom Betreiber zu ergänzen: vollständiger Name der Inhaberin/des Inhabers bzw. Firmierung mit Rechtsform, vertretungsberechtigte Person, E-Mail-Adresse, ggf. Handelsregister und Registernummer, Umsatzsteuer-Identifikationsnummer, zuständige Aufsichtsbehörde.]</p>
+        </div>
+      </details>
+      <details id="datenschutz">
+        <summary>Datenschutzerklärung</summary>
+        <div class="legal-body">
+          <p>Diese Website verwendet keine Cookies, keine Analyse-Dienste und keine extern geladenen Schriftarten. Beim Aufruf werden durch den Hosting-Anbieter technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt des Abrufs) verarbeitet.</p>
+          <p>Links zu Google Maps öffnen den externen Dienst erst nach deinem Klick; dabei gelten die Datenschutzbestimmungen von Google.</p>
+          <p>[Vom Betreiber zu ergänzen: verantwortliche Stelle mit Kontaktdaten, Hosting-Anbieter, Angaben zu Betroffenenrechten nach DSGVO, ggf. Datenschutzbeauftragte/r.]</p>
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="checker" aria-hidden="true"></div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" aria-label="Schnellzugriff">
+  <a class="m-menu" href="#speisekarte">Speisekarte</a>
+  <a class="m-order" href="tel:+495323840230">Jetzt bestellen</a>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Euro Döner",
+  "servesCuisine": ["Döner", "Pizza", "Türkisch", "Fast Food"],
+  "priceRange": "€",
+  "acceptsReservations": "False",
+  "telephone": "+49 5323 840230",
+  "hasMenu": "#speisekarte",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Adolph-Roemer-Straße 7",
+    "postalCode": "38678",
+    "addressLocality": "Clausthal-Zellerfeld",
+    "addressCountry": "DE"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "11:00", "closes": "23:00"
+    }
+  ]
+}
+</script>
+<script>
+/* ── NAV SCROLL ─────────────────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 24);
+}, { passive: true });
+
+/* ── MOBILE MENU ────────────────────────────────────────────────────── */
+(function () {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    menu.classList.toggle('open', open);
+  }
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) { setOpen(false); toggle.focus(); }
+  });
+})();
+
+/* ── HERO CANVAS — Grill-Glut ───────────────────────────────────────── */
+(function () {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, embers = [], running = false, rafId = 0;
+  const COLORS = ['#E8791C', '#F2C230', '#F0353D'];
+
+  function spawn(atBottom) {
+    return {
+      x: Math.random() * W,
+      y: atBottom ? H + Math.random() * 40 : Math.random() * H,
+      r: 0.7 + Math.random() * 1.8,
+      spd: 0.15 + Math.random() * 0.5,
+      drift: (Math.random() - 0.5) * 0.25,
+      a: 0.15 + Math.random() * 0.35,
+      col: COLORS[(Math.random() * COLORS.length) | 0],
+    };
+  }
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.offsetWidth; H = canvas.offsetHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.max(16, Math.min(34, Math.round(W / 46)));
+    embers = Array.from({ length: count }, () => spawn(false));
+    if (REDUCED) draw();
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    /* warmer Glutschein am unteren Rand */
+    const glow = ctx.createRadialGradient(W / 2, H, H * 0.1, W / 2, H, H * 0.85);
+    glow.addColorStop(0, 'rgba(232,121,28,0.22)');
+    glow.addColorStop(0.5, 'rgba(212,32,39,0.08)');
+    glow.addColorStop(1, 'rgba(212,32,39,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+    for (const e of embers) {
+      ctx.globalAlpha = e.a;
+      ctx.fillStyle = e.col;
+      ctx.beginPath();
+      ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function step() {
+    for (let i = 0; i < embers.length; i++) {
+      const e = embers[i];
+      e.y -= e.spd;
+      e.x += e.drift;
+      if (e.y < -10 || e.x < -10 || e.x > W + 10) embers[i] = spawn(true);
+    }
+    draw();
+    rafId = requestAnimationFrame(step);
+  }
+  function start() { if (!running && !REDUCED) { running = true; rafId = requestAnimationFrame(step); } }
+  function stop() { if (running) { running = false; cancelAnimationFrame(rafId); } }
+
+  window.addEventListener('resize', resize);
+  resize();
+  if (REDUCED) return;
+  let inView = false;
+  new IntersectionObserver(([en]) => { inView = en.isIntersecting; inView ? start() : stop(); }, { threshold: 0.02 }).observe(canvas);
+  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : (inView && start()); });
+})();
+
+/* ── MENU TABS (Maus + Tastatur) ─────────────────────────────────────── */
+(function () {
+  const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+  function activate(btn, focus) {
+    tabs.forEach(b => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.toggle('active', p.id === btn.dataset.target));
+    if (focus) btn.focus();
+  }
+  tabs.forEach((btn, i) => {
+    btn.addEventListener('click', () => activate(btn, false));
+    btn.addEventListener('keydown', e => {
+      let next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); activate(next, true); }
+    });
+  });
+})();
+
+/* ── TODAY'S ROW HIGHLIGHT ──────────────────────────────────────────── */
+(function () {
+  const today = new Date().getDay();
+  const row = document.querySelector(`.hours-tbl tr[data-day="${today}"]`);
+  if (row) row.classList.add('today');
+})();
+
+/* ── DYNAMISCHER ÖFFNUNGSSTATUS ─────────────────────────────────────── */
+(function () {
+  const HOURS = { 0: [[11,23]], 1: [[11,23]], 2: [[11,23]], 3: [[11,23]], 4: [[11,23]], 5: [[11,23]], 6: [[11,23]] };
+  const DAY_NAMES = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  const pill = document.getElementById('open-status');
+  const label = document.getElementById('open-status-text');
+  if (!pill || !label) return;
+
+  const now = new Date();
+  const day = now.getDay();
+  const t = now.getHours() + now.getMinutes() / 60;
+  const spans = HOURS[day];
+  const fmt = h => `${String(Math.floor(h)).padStart(2,'0')}:${String(Math.round((h % 1) * 60)).padStart(2,'0')}`;
+
+  function nextOpening() {
+    for (let i = 1; i <= 7; i++) {
+      const d = (day + i) % 7;
+      if (HOURS[d] && HOURS[d].length) {
+        const when = i === 1 ? 'morgen' : `am ${DAY_NAMES[d]}`;
+        return `Öffnet ${when} um ${fmt(HOURS[d][0][0])} Uhr`;
+      }
+    }
+    return '';
+  }
+
+  let text = '', open = false;
+  if (!spans || !spans.length) {
+    text = `Heute geschlossen · ${nextOpening()}`;
+  } else {
+    const current = spans.find(([from, to]) => t >= from && t < to);
+    if (current) { open = true; text = `Jetzt geöffnet — bis ${fmt(current[1])} Uhr`; }
+    else {
+      const upcoming = spans.find(([from]) => t < from);
+      text = upcoming ? `Öffnet heute um ${fmt(upcoming[0])} Uhr` : nextOpening();
+    }
+  }
+  label.textContent = text;
+  pill.classList.toggle('closed', !open);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Serra Döner Clausthal-Zellerfeld – Der erste Online-Döner, seit 2005 | Döner, Boxen &amp; Burger</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Serra Imbiss in Clausthal-Zellerfeld – der erste Online-Döner der Welt, seit 2005. Echter Döner, große Portionen, faire Preise. Vor Ort, Abholung &amp; Lieferung. Osteröder Str. 4A, Tel. 05323 715350.">
+<style>
+/* ═══ TOKENS — Designsystem Serra Döner ══════════════════════════════════ */
+:root {
+  --bg:        #FBFAF7;   /* Off-White */
+  --surface:   #FFFFFF;
+  --soft:      #EBDCC0;   /* Sesam-Beige */
+  --soft-2:    #F3E9D6;
+  --ink:       #1F1D1B;   /* Anthrazit-Grill */
+  --ink-2:     #4A4644;   /* Warm-Grau */
+  --ink-3:     #6B655C;
+  --line:      rgba(31,29,27,0.12);
+  --red:       #E2231A;   /* Serra-Rot */
+  --red-2:     #B01810;   /* Rot-Dunkel (Hover, Preistext) */
+  --yellow:    #FFC20E;   /* Serra-Gelb */
+  --anthra:    #1F1D1B;   /* dunkle Sektionen */
+  --on-dark:   #FBFAF7;
+  --on-dark-2: #C9C3B7;
+  --green-tag: #4A7A1F;   /* Frisch/Vegetarisch */
+  --shadow:    0 4px 18px rgba(31,29,27,0.09);
+  --shadow-lg: 0 12px 40px rgba(31,29,27,0.18);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #16140F;
+    --surface:   #201D17;
+    --soft:      #2A251B;
+    --soft-2:    #241F17;
+    --ink:       #F5F0E6;
+    --ink-2:     #CFC7B8;
+    --ink-3:     #9A9182;
+    --line:      rgba(245,240,230,0.14);
+    --red:       #F0483D;
+    --red-2:     #FF6B60;
+    --yellow:    #FFC20E;
+    --anthra:    #0E0D0B;
+    --on-dark:   #F5F0E6;
+    --on-dark-2: #C9C3B7;
+    --green-tag: #4A7A1F;
+    --shadow:    0 4px 18px rgba(0,0,0,0.4);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.55);
+  }
+}
+:root[data-theme="light"] {
+  --bg: #FBFAF7; --surface: #FFFFFF; --soft: #EBDCC0; --soft-2: #F3E9D6;
+  --ink: #1F1D1B; --ink-2: #4A4644; --ink-3: #6B655C; --line: rgba(31,29,27,0.12);
+  --red: #E2231A; --red-2: #B01810; --yellow: #FFC20E; --anthra: #1F1D1B;
+  --on-dark: #FBFAF7; --on-dark-2: #C9C3B7; --green-tag: #4A7A1F;
+  --shadow: 0 4px 18px rgba(31,29,27,0.09); --shadow-lg: 0 12px 40px rgba(31,29,27,0.18);
+}
+:root[data-theme="dark"] {
+  --bg: #16140F; --surface: #201D17; --soft: #2A251B; --soft-2: #241F17;
+  --ink: #F5F0E6; --ink-2: #CFC7B8; --ink-3: #9A9182; --line: rgba(245,240,230,0.14);
+  --red: #F0483D; --red-2: #FF6B60; --yellow: #FFC20E; --anthra: #0E0D0B;
+  --on-dark: #F5F0E6; --on-dark-2: #C9C3B7; --green-tag: #4A7A1F;
+  --shadow: 0 4px 18px rgba(0,0,0,0.4); --shadow-lg: 0 12px 40px rgba(0,0,0,0.55);
+}
+
+/* ═══ BASE ═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; font: inherit; color: inherit; }
+[id] { scroll-margin-top: 5.5rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.display {
+  font-family: 'Anton','Bebas Neue','Oswald',Impact,'Franklin Gothic Medium','Arial Narrow',sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.wordmark {
+  font-family: 'Anton','Bebas Neue',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  color: var(--red);
+}
+.wordmark sup { font-size: 0.42em; vertical-align: super; font-weight: 700; }
+.label {
+  display: inline-block;
+  font-family: 'Anton','Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red-2);
+}
+
+.skip-link {
+  position: absolute; top: -100%; left: 1rem; z-index: 500;
+  padding: 0.75rem 1.5rem; background: var(--red); color: #fff;
+  font-weight: 700; font-size: 0.875rem; text-decoration: none; border-radius: 8px;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ═══ HERITAGE BAR ═══════════════════════════════════════════════════════ */
+.heritage-bar {
+  background: var(--anthra); color: var(--on-dark);
+  font-size: 0.78rem; text-align: center; padding: 0.4rem 1rem;
+  letter-spacing: 0.02em;
+}
+.heritage-bar strong { color: var(--yellow); font-weight: 700; }
+
+/* ═══ HEADER ═════════════════════════════════════════════════════════════ */
+header.site {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s;
+}
+header.site.scrolled { box-shadow: var(--shadow); }
+.header-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.6rem 2rem; max-width: 82rem; margin: 0 auto;
+}
+.brand { display: inline-flex; align-items: baseline; gap: 0.5rem; text-decoration: none; }
+.brand .wordmark { font-size: 1.7rem; }
+.brand .imbiss { font-family: 'Anton',Impact,sans-serif; font-size: 0.66rem; letter-spacing: 0.28em; color: var(--ink-2); text-transform: uppercase; align-self: center; }
+.nav-links { list-style: none; display: flex; gap: 1.6rem; }
+.nav-links a { font-size: 0.85rem; font-weight: 600; color: var(--ink-2); text-decoration: none; transition: color 0.18s; }
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--red); }
+.nav-links a:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+.cart-btn {
+  position: relative; display: inline-flex; align-items: center; gap: 0.4rem;
+  min-height: 44px; padding: 0.45rem 0.9rem;
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px;
+  font-weight: 700; font-size: 0.85rem; color: var(--ink);
+}
+.cart-btn svg { width: 1.15rem; height: 1.15rem; }
+.cart-btn:hover { border-color: var(--red); color: var(--red); }
+.cart-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.cart-count {
+  min-width: 1.25rem; height: 1.25rem; padding: 0 0.3rem;
+  display: none; align-items: center; justify-content: center;
+  background: var(--red); color: #fff; border-radius: 999px;
+  font-size: 0.72rem; font-weight: 800; line-height: 1;
+}
+.cart-count.show { display: inline-flex; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+  min-height: 44px; padding: 0.6rem 1.3rem; border-radius: 8px;
+  font-weight: 700; font-size: 0.9rem; text-decoration: none; border: none;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.08s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--red); color: #fff; }
+.btn-primary:hover { background: var(--red-2); }
+.btn-ghost { background: transparent; border: 1.5px solid var(--ink); color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--bg); }
+.btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.header-cta { display: inline-flex; }
+
+.nav-toggle {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 2.5rem; height: 2.5rem; padding: 0.5rem;
+  background: none; border: 1.5px solid var(--line); border-radius: 8px;
+}
+.nav-toggle span { display: block; height: 2px; background: var(--ink); transition: transform 0.25s, opacity 0.25s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+/* ═══ HERO ═══════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(90% 70% at 88% 12%, rgba(255,194,14,0.14), transparent 60%),
+    radial-gradient(70% 60% at 8% 92%, rgba(226,35,26,0.08), transparent 60%),
+    var(--bg);
+}
+.hero-inner {
+  max-width: 82rem; margin: 0 auto;
+  padding: 3.5rem 2rem 4rem;
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center;
+}
+.hero-open {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.35rem 0.9rem; border-radius: 999px;
+  background: rgba(60,154,95,0.12); border: 1px solid rgba(60,154,95,0.4);
+  font-size: 0.8rem; font-weight: 600; color: #3C7A28; margin-bottom: 1.25rem;
+}
+@media (prefers-color-scheme: dark) { .hero-open { color: #7FCB63; } .hero-open.closed { color: #F0897E; } }
+:root[data-theme="dark"] .hero-open { color: #7FCB63; }
+:root[data-theme="dark"] .hero-open.closed { color: #F0897E; }
+:root[data-theme="light"] .hero-open { color: #3C7A28; }
+:root[data-theme="light"] .hero-open.closed { color: #C0392B; }
+.hero-open .dot { width: 8px; height: 8px; border-radius: 50%; background: #3C9A5F; box-shadow: 0 0 7px #3C9A5F; }
+.hero-open.closed { background: rgba(192,57,43,0.12); border-color: rgba(192,57,43,0.4); color: #C0392B; }
+.hero-open.closed .dot { background: #C0392B; box-shadow: 0 0 7px #C0392B; }
+.hero h1 { margin-bottom: 0.5rem; }
+.hero .kicker {
+  font-family: 'Anton','Bebas Neue',Impact,'Arial Narrow',sans-serif;
+  text-transform: uppercase; letter-spacing: 0.02em; font-weight: 700;
+  font-size: clamp(2.8rem, 7vw, 5rem); line-height: 0.95; color: var(--ink);
+}
+.hero .kicker .serra {
+  color: var(--red); display: inline-block; position: relative; z-index: 0;
+}
+.hero .kicker .serra::after {
+  content: ""; position: absolute; left: -2%; right: -2%; bottom: 0.05em; height: 0.16em;
+  background: var(--yellow); z-index: -1; border-radius: 2px; transform: skewX(-12deg);
+}
+.hero-sub {
+  font-size: 1.15rem; color: var(--ink-2); margin: 1.25rem 0 1.5rem; max-width: 40ch;
+  font-weight: 500;
+}
+.hero-sub b { color: var(--ink); }
+.service-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.service-chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.4rem 0.9rem; border-radius: 999px;
+  background: var(--surface); border: 1.5px solid var(--line);
+  font-size: 0.82rem; font-weight: 600; color: var(--ink);
+}
+.service-chip svg { width: 1rem; height: 1rem; color: var(--red); }
+.hero-cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.hero-cta-row .btn { min-height: 52px; padding: 0.85rem 1.8rem; font-size: 1rem; }
+.hero-meta { display: flex; gap: 0.6rem 1.5rem; flex-wrap: wrap; align-items: center; font-size: 0.9rem; color: var(--ink-2); }
+.hero-meta a { color: inherit; text-decoration: none; }
+.hero-meta a:hover { color: var(--red); }
+.hero-meta a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.rating { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+.rating:hover { color: var(--red); }
+.rating:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.stars { position: relative; display: inline-block; letter-spacing: 0.06em; line-height: 1; color: rgba(31,29,27,0.22); }
+:root[data-theme="dark"] .stars { color: rgba(245,240,230,0.24); }
+.stars::before { content: "★★★★★"; }
+.stars .fill { position: absolute; top: 0; left: 0; width: 90%; overflow: hidden; white-space: nowrap; color: var(--yellow); }
+.stars .fill::before { content: "★★★★★"; }
+
+.hero-visual { display: flex; align-items: center; justify-content: center; }
+.stamp { width: min(20rem, 70vw); height: auto; filter: drop-shadow(var(--shadow)); }
+.stamp .ring { animation: spin 26s linear infinite; transform-origin: 60px 60px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.stamp .ring text { fill: var(--ink); font-family: 'Anton',Impact,sans-serif; font-size: 8.1px; letter-spacing: 2.1px; }
+.stamp .ring-outer { fill: none; stroke: var(--yellow); }
+.stamp .disc { fill: var(--red); }
+.stamp .mono { fill: #fff; }
+.stamp .est { fill: var(--yellow); }
+@media (prefers-reduced-motion: reduce) { .stamp .ring { animation: none; } html { scroll-behavior: auto; } }
+
+/* ═══ ORDER-MODE STRIP ═══════════════════════════════════════════════════ */
+.modes { background: var(--anthra); color: var(--on-dark); }
+.modes-inner { max-width: 82rem; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.mode {
+  display: flex; gap: 0.9rem; align-items: flex-start;
+  padding: 1.1rem 1.25rem; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+}
+.mode .ic { width: 2.5rem; height: 2.5rem; flex-shrink: 0; display: grid; place-items: center; border-radius: 9px; background: var(--yellow); color: var(--anthra); }
+.mode .ic svg { width: 1.4rem; height: 1.4rem; }
+.mode h3 { font-size: 1.05rem; font-family: system-ui, sans-serif; font-weight: 800; margin-bottom: 0.15rem; text-transform: none; letter-spacing: 0; }
+.mode p { font-size: 0.85rem; color: var(--on-dark-2); }
+
+/* ═══ SECTION SCAFFOLD ═══════════════════════════════════════════════════ */
+.section { max-width: 82rem; margin: 0 auto; padding: 5rem 2rem; }
+.section-head { margin-bottom: 2.5rem; }
+.section-head.center { text-align: center; }
+.section-head .label { margin-bottom: 0.7rem; }
+.section-head h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+.section-head p { color: var(--ink-2); margin-top: 0.7rem; font-size: 1.05rem; max-width: 52ch; }
+.section-head.center p { margin-left: auto; margin-right: auto; }
+
+/* ═══ MENU + CART ════════════════════════════════════════════════════════ */
+.menu-section { background: var(--soft-2); }
+.tab-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+.tab-btn {
+  min-height: 44px; padding: 0.5rem 1.2rem;
+  font-family: 'Anton','Oswald',Impact,'Arial Narrow',sans-serif;
+  font-weight: 700; font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--ink-2); background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px;
+  transition: color 0.18s, background 0.18s, border-color 0.18s;
+}
+.tab-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.tab-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
+.tab-btn:not(.active):hover { color: var(--red); border-color: var(--red); }
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+.dish-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: 1.1rem; }
+.dish {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.dish-popular-band {
+  background: var(--yellow); color: var(--anthra);
+  font-family: 'Anton',Impact,sans-serif; text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 0.7rem; font-weight: 700; padding: 0.2rem 1.15rem;
+}
+.dish-body { padding: 1.1rem 1.25rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
+.dish-head { display: flex; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.35rem; }
+.dish-name { font-size: 1.1rem; font-weight: 800; }
+.tag {
+  font-size: 0.62rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.15rem 0.45rem; border-radius: 5px; align-self: center;
+}
+.tag.veg { background: var(--green-tag); color: #fff; }
+.tag.xl { background: var(--ink); color: var(--yellow); }
+.dish-desc { font-size: 0.88rem; color: var(--ink-2); line-height: 1.5; flex: 1; }
+.dish-allerg { font-size: 0.68rem; color: var(--ink-3); margin-top: 0.5rem; letter-spacing: 0.04em; }
+.dish-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 0.9rem; }
+.dish-price { font-family: 'Anton',Impact,sans-serif; font-size: 1.25rem; color: var(--red-2); font-variant-numeric: tabular-nums; }
+.add-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  min-height: 44px; padding: 0.5rem 1rem; border-radius: 8px;
+  background: var(--red); color: #fff; font-weight: 700; font-size: 0.85rem; border: none;
+  transition: background 0.18s;
+}
+.add-btn svg { width: 1rem; height: 1rem; }
+.add-btn:hover { background: var(--red-2); }
+.add-btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.add-btn.added { background: var(--green-tag); }
+.menu-legend { margin-top: 2.25rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+.menu-legend summary { cursor: pointer; padding: 0.5rem 0.25rem; font-size: 0.82rem; font-weight: 600; color: var(--ink-2); list-style-position: inside; }
+.menu-legend summary:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.menu-legend p { font-size: 0.82rem; color: var(--ink-3); line-height: 1.75; margin-top: 0.7rem; max-width: 64ch; }
+
+/* ═══ CART DRAWER ════════════════════════════════════════════════════════ */
+.cart-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(31,29,27,0.5); opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+}
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 310;
+  width: min(26rem, 100vw); background: var(--bg);
+  display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.28s ease;
+  box-shadow: var(--shadow-lg);
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--line);
+}
+.cart-header h2 { font-size: 1.25rem; font-weight: 800; }
+.cart-close {
+  width: 2.2rem; height: 2.2rem; border-radius: 8px; border: 1.5px solid var(--line);
+  background: var(--surface); display: grid; place-items: center; font-size: 1.2rem; line-height: 1;
+}
+.cart-close:hover { border-color: var(--red); color: var(--red); }
+.cart-close:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.cart-items { flex: 1; overflow-y: auto; padding: 0.75rem 1.25rem; list-style: none; }
+.cart-empty { color: var(--ink-3); text-align: center; padding: 3rem 1rem; font-size: 0.95rem; }
+.cart-line { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
+.cart-line-info { flex: 1; min-width: 0; }
+.cart-line-name { font-weight: 700; font-size: 0.95rem; }
+.cart-line-price { font-size: 0.8rem; color: var(--ink-3); }
+.stepper { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 8px; overflow: hidden; }
+.stepper button {
+  width: 2rem; height: 2rem; background: var(--surface); border: none; font-size: 1.1rem; line-height: 1;
+  color: var(--red); font-weight: 800;
+}
+.stepper button:hover { background: var(--soft); }
+.stepper button:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+.stepper .qty { min-width: 1.9rem; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+.cart-line-sum { font-family: 'Anton',Impact,sans-serif; font-size: 1rem; color: var(--red-2); min-width: 3.4rem; text-align: right; font-variant-numeric: tabular-nums; }
+.cart-foot { border-top: 1px solid var(--line); padding: 1.1rem 1.25rem 1.25rem; background: var(--surface); }
+.cart-total-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.9rem; }
+.cart-total-row span:first-child { font-weight: 700; }
+.cart-total { font-family: 'Anton',Impact,sans-serif; font-size: 1.7rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.cart-actions { display: grid; gap: 0.5rem; }
+.cart-actions .btn { width: 100%; min-height: 50px; }
+.btn-copy { background: var(--surface); border: 1.5px solid var(--ink); color: var(--ink); }
+.btn-copy:hover { background: var(--ink); color: var(--bg); }
+.cart-note { font-size: 0.72rem; color: var(--ink-3); margin-top: 0.75rem; line-height: 1.5; }
+
+/* ═══ ABOUT / HERITAGE ═══════════════════════════════════════════════════ */
+.about { background: var(--anthra); color: var(--on-dark); }
+.about-inner { max-width: 82rem; margin: 0 auto; padding: 5rem 2rem; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; align-items: center; }
+.about .label { color: var(--yellow); }
+.about h2 { font-size: clamp(2rem, 4.5vw, 3rem); margin: 0.7rem 0 1.25rem; }
+.about p { color: var(--on-dark-2); max-width: 52ch; }
+.about p + p { margin-top: 1rem; }
+.about .owner-quote {
+  margin-top: 1.75rem; padding-left: 1.25rem; border-left: 3px solid var(--yellow);
+  font-size: 1.2rem; font-style: italic; color: var(--on-dark);
+}
+.about .owner-name { margin-top: 0.75rem; font-size: 0.85rem; letter-spacing: 0.04em; color: var(--on-dark-2); font-style: normal; }
+.about .owner-name b { color: var(--yellow); font-style: normal; }
+.about-photo {
+  aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; position: relative;
+  background:
+    radial-gradient(60% 60% at 50% 35%, rgba(226,35,26,0.25), transparent 70%),
+    linear-gradient(135deg, #2a2724, #100f0d);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: grid; place-items: center; text-align: center; padding: 1.5rem;
+}
+.about-photo .ph-stamp { font-family: 'Anton',Impact,sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--yellow); font-size: 1.5rem; }
+.about-photo .ph-note { color: var(--on-dark-2); font-size: 0.78rem; margin-top: 0.5rem; }
+.about-stats { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+.about-stat .num { font-family: 'Anton',Impact,sans-serif; font-size: 2rem; color: var(--yellow); line-height: 1; }
+.about-stat .cap { font-size: 0.78rem; color: var(--on-dark-2); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+/* ═══ LOCATIONS ══════════════════════════════════════════════════════════ */
+.loc-switch { display: inline-flex; background: var(--soft); border-radius: 10px; padding: 0.3rem; gap: 0.3rem; margin-bottom: 2rem; }
+.loc-switch button {
+  min-height: 44px; padding: 0.5rem 1.4rem; border: none; border-radius: 8px;
+  background: transparent; font-weight: 700; font-size: 0.9rem; color: var(--ink-2);
+}
+.loc-switch button.active { background: var(--red); color: #fff; }
+.loc-switch button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.loc-panel { display: none; }
+.loc-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.loc-block h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.35rem; }
+.loc-tagline { color: var(--ink-2); font-size: 0.92rem; margin-bottom: 1.5rem; }
+.loc-contact { display: flex; flex-direction: column; gap: 1rem; }
+.loc-item { display: flex; gap: 0.85rem; align-items: flex-start; }
+.loc-item svg { flex-shrink: 0; width: 1.2rem; height: 1.2rem; color: var(--red); margin-top: 0.15rem; }
+.loc-item-body { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
+.loc-item-body a { color: var(--ink-2); text-decoration: none; }
+.loc-item-body a:hover { color: var(--red); }
+.loc-item-body a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.loc-placeholder { color: var(--ink-3); font-style: italic; font-size: 0.85rem; }
+.hours-tbl { width: 100%; border-collapse: collapse; }
+.hours-tbl td { font-size: 0.92rem; padding: 0.25rem 0 0.5rem; vertical-align: top; }
+.hours-tbl td:first-child { color: var(--ink-2); font-weight: 600; padding-right: 1.5rem; white-space: nowrap; width: 7rem; }
+.hours-tbl td:last-child { color: var(--ink); font-variant-numeric: tabular-nums; }
+.hours-tbl tr.today td:first-child { color: var(--red); }
+.hours-tbl tr.today td:last-child { font-weight: 700; }
+.loc-btn { margin-top: 1.5rem; }
+
+/* ═══ ORDER BAND ═════════════════════════════════════════════════════════ */
+.band {
+  background: var(--red); color: #fff; text-align: center; padding: 4rem 2rem;
+  background-image: linear-gradient(135deg, var(--red), var(--red-2));
+}
+.band h2 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 0.6rem; }
+.band p { font-size: 1.1rem; opacity: 0.94; margin-bottom: 1.75rem; }
+.band .btn { background: var(--yellow); color: var(--anthra); min-height: 54px; padding: 0.9rem 2.2rem; font-size: 1.05rem; }
+.band .btn:hover { background: #fff; }
+
+/* ═══ FOOTER ═════════════════════════════════════════════════════════════ */
+footer.site { background: var(--anthra); color: var(--on-dark-2); }
+.footer-inner { max-width: 82rem; margin: 0 auto; padding: 3.5rem 2rem 2.5rem; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; }
+.footer-brand .wordmark { font-size: 2rem; }
+.footer-brand p { font-size: 0.85rem; margin-top: 0.75rem; line-height: 1.6; }
+.footer-brand .rating { color: var(--on-dark); margin-top: 1rem; }
+.footer-col h4 { font-family: 'Anton',Impact,sans-serif; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; color: var(--on-dark); margin-bottom: 0.9rem; }
+.footer-col a, .footer-col p { display: block; font-size: 0.88rem; color: var(--on-dark-2); text-decoration: none; margin-bottom: 0.5rem; line-height: 1.5; }
+.footer-col a:hover { color: var(--yellow); }
+.footer-col a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.footer-legal { border-top: 1px solid rgba(255,255,255,0.1); }
+.footer-legal-inner { max-width: 82rem; margin: 0 auto; padding: 0 2rem; }
+.footer-legal details { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-legal summary { cursor: pointer; padding: 0.85rem 0.25rem; font-size: 0.8rem; font-weight: 600; color: var(--on-dark-2); list-style-position: inside; }
+.footer-legal summary:hover { color: var(--yellow); }
+.footer-legal summary:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.footer-legal-body { padding: 0 0.25rem 1.2rem; font-size: 0.75rem; line-height: 1.75; color: rgba(251,250,247,0.5); }
+.footer-legal-body p + p { margin-top: 0.7rem; }
+.footer-bottom { text-align: center; padding: 1.25rem 2rem; font-size: 0.75rem; color: rgba(251,250,247,0.4); }
+
+/* ═══ MOBILE STICKY BAR ══════════════════════════════════════════════════ */
+.mobile-bar { display: none; }
+
+/* ═══ RESPONSIVE ═════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-visual { order: -1; }
+  .stamp { width: 12rem; }
+  .modes-inner { grid-template-columns: 1fr; }
+  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .loc-panel.active { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .header-row { padding: 0.55rem 1.15rem; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    order: 5; display: none; flex-basis: 100%; flex-direction: column; gap: 0;
+    margin-top: 0.6rem; border-top: 1px solid var(--line);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { display: block; padding: 0.9rem 0.25rem; border-bottom: 1px solid var(--line); }
+  header.site { flex-wrap: wrap; }
+  .header-row { flex-wrap: wrap; }
+  .header-cta { display: none; }
+  .section { padding: 3.5rem 1.15rem; }
+  .about-inner, .modes-inner { padding: 3.5rem 1.15rem; }
+  .hero-inner { padding: 2.5rem 1.15rem 3rem; }
+  .band { padding: 3.5rem 1.15rem; }
+  .footer-inner { grid-template-columns: 1fr; padding: 3rem 1.15rem 6.5rem; }
+  .footer-legal-inner { padding: 0 1.15rem; }
+  .footer-bottom { padding-bottom: 5rem; }
+  .dish-grid { grid-template-columns: 1fr; }
+
+  .mobile-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+    display: flex; gap: 0; box-shadow: 0 -3px 14px rgba(0,0,0,0.2);
+  }
+  .mobile-bar button, .mobile-bar a {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    min-height: 54px; font-weight: 800; font-size: 0.92rem; text-decoration: none; border: none;
+  }
+  .mobile-bar .m-menu { background: var(--anthra); color: var(--on-dark); }
+  .mobile-bar .m-cart { background: var(--red); color: #fff; position: relative; }
+  .mobile-bar .m-cart:focus-visible, .mobile-bar .m-menu:focus-visible { outline: 2px solid var(--yellow); outline-offset: -3px; }
+  .mobile-bar .cart-count { background: var(--yellow); color: var(--anthra); }
+}
+</style>
+</head>
+<body>
+<a href="#speisekarte" class="skip-link">Direkt zur Speisekarte</a>
+
+<!-- HERITAGE BAR -->
+<div class="heritage-bar">Der <strong>erste Online-Döner der Welt</strong> — aus Clausthal-Zellerfeld, <strong>seit 2005</strong>.</div>
+
+<!-- HEADER -->
+<header class="site" id="header">
+  <div class="header-row">
+    <a href="#" class="brand" aria-label="Serra Imbiss Startseite">
+      <span class="wordmark">Serra<sup>®</sup></span>
+      <span class="imbiss">Imbiss</span>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      <ul class="nav-links" id="nav-menu" role="list">
+        <li><a href="#speisekarte">Speisekarte</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#standorte">Standorte</a></li>
+        <li><a href="#standorte">Öffnungszeiten</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-btn" id="cart-open" aria-haspopup="dialog" aria-controls="cart-drawer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.4a1 1 0 0 1 .98.8L5 6m0 0 1.6 8a1.5 1.5 0 0 0 1.47 1.2h8.4a1.5 1.5 0 0 0 1.47-1.19L19.5 8H5.25z"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>
+        <span>Warenkorb</span>
+        <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+      </button>
+      <a href="tel:+495323715350" class="btn btn-primary header-cta" aria-label="Jetzt bestellen – anrufen"><span>Jetzt bestellen</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" aria-label="Serra Imbiss">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-open" id="open-status"><span class="dot"></span><span id="open-status-text">Öffnungszeiten laden …</span></span>
+      <h1 class="kicker">Echter <span class="serra">Serra</span> Döner.<br>Echte Leute.</h1>
+      <p class="hero-sub">Der erste Online-Döner der Welt — <b>seit 2005</b> in Clausthal-Zellerfeld. Große Portionen, faire Preise, frisch vom Spieß.</p>
+      <div class="service-chips" aria-label="Unsere Services">
+        <span class="service-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v2H4zm2 4h12l-1 12H7L6 8z"/></svg>Vor Ort</span>
+        <span class="service-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h12l1 4H5zM5 8h14l-1 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1z"/></svg>Abholung</span>
+        <span class="service-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h11v9H3zM14 9h3.5l2.5 3v3h-6zM6.5 17.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zm10 0a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5z"/></svg>Lieferung</span>
+      </div>
+      <div class="hero-cta-row">
+        <a href="#speisekarte" class="btn btn-primary">Speisekarte &amp; bestellen</a>
+        <a href="tel:+495323715350" class="btn btn-ghost">05323 715350 anrufen</a>
+      </div>
+      <div class="hero-meta">
+        <a href="https://maps.google.com/?q=Serra+Imbiss,+Oster%C3%B6der+Str.+4A,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer">Osteröder Str. 4A, Clausthal-Zellerfeld</a>
+        <a class="rating" href="https://maps.google.com/?q=Serra+Imbiss,+Oster%C3%B6der+Str.+4A,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer"><span class="stars" aria-hidden="true"><span class="fill"></span></span> 4,5 · 1.089 Bewertungen</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="stamp" viewBox="0 0 120 120" role="img" aria-label="Serra Imbiss – seit 2005">
+        <defs>
+          <path id="ring-path" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
+        </defs>
+        <circle class="ring-outer" cx="60" cy="60" r="58" stroke-width="2.5"/>
+        <circle class="disc" cx="60" cy="60" r="30"/>
+        <g class="ring">
+          <text><textPath href="#ring-path" startOffset="0">SERRA IMBISS · SEIT 2005 · ECHTER DÖNER · </textPath></text>
+        </g>
+        <text class="mono" x="60" y="64" text-anchor="middle" font-family="'Anton',Impact,sans-serif" font-size="24" font-weight="700">S</text>
+        <text class="est" x="60" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="6.5" letter-spacing="1.2">EST. 2005</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER MODES -->
+<section class="modes" aria-label="So bestellst du">
+  <div class="modes-inner">
+    <div class="mode">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v2H4zm2 4h12l-1 12H7L6 8zm3 3v6h2v-6zm4 0v6h2v-6z"/></svg></div>
+      <div><h3>Vor Ort essen</h3><p>Komm vorbei und iss frisch vom Spieß — gemütlich in Clausthal.</p></div>
+    </div>
+    <div class="mode">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h12l1 4H5zM5 8h14l-1 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1z"/></svg></div>
+      <div><h3>Abholung</h3><p>Stell dir online deine Bestellung zusammen und ruf kurz durch — in Minuten fertig.</p></div>
+    </div>
+    <div class="mode">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h11v9H3zM14 9h3.5l2.5 3v3h-6zM6.5 17.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zm10 0a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5z"/></svg></div>
+      <div><h3>Lieferung</h3><p>Aus unserer Lieferküche am Brauhausberg — heiß zu dir nach Hause.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="speisekarte" class="menu-section" aria-label="Speisekarte">
+  <div class="section">
+    <div class="section-head center">
+      <span class="label">Speisekarte</span>
+      <h2 class="display">Stell dir deine Bestellung zusammen</h2>
+      <p>Tippe auf <b>+ Warenkorb</b>, sammle deine Lieblinge und schließ die Bestellung mit einem Anruf ab. Alle Preise inkl. MwSt.</p>
+    </div>
+
+    <div class="tab-bar" role="tablist" aria-label="Kategorien">
+      <button class="tab-btn active" id="btn-doener" role="tab" data-target="tab-doener" aria-controls="tab-doener" aria-selected="true">Döner &amp; Dürüm</button>
+      <button class="tab-btn" id="btn-boxen" role="tab" data-target="tab-boxen" aria-controls="tab-boxen" aria-selected="false" tabindex="-1">Boxen &amp; Teller</button>
+      <button class="tab-btn" id="btn-burger" role="tab" data-target="tab-burger" aria-controls="tab-burger" aria-selected="false" tabindex="-1">Burger</button>
+      <button class="tab-btn" id="btn-veggie" role="tab" data-target="tab-veggie" aria-controls="tab-veggie" aria-selected="false" tabindex="-1">Vegetarisch</button>
+      <button class="tab-btn" id="btn-drinks" role="tab" data-target="tab-drinks" aria-controls="tab-drinks" aria-selected="false" tabindex="-1">Getränke</button>
+    </div>
+
+    <div id="tab-doener" class="menu-panel active" role="tabpanel" aria-labelledby="btn-doener">
+      <div class="dish-grid">
+        <article class="dish" data-id="serra-doener" data-name="Serra Döner" data-price="6.50">
+          <div class="dish-popular-band">★ Beliebt</div>
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Serra Döner</span></div>
+            <p class="dish-desc">Kalb &amp; Hähnchen frisch vom Spieß, knackiger Salat, Zwiebeln, Tomaten und Sauce nach Wahl im Fladenbrot.</p>
+            <p class="dish-allerg">Allergene: G · M · SF</p>
+            <div class="dish-foot"><span class="dish-price">6,50 €</span><button class="add-btn" data-add aria-label="Serra Döner in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="haehnchen-doener" data-name="Hähnchen Döner" data-price="6.50">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Hähnchen Döner</span></div>
+            <p class="dish-desc">Saftiges Hähnchenfleisch vom Spieß mit frischem Salat und cremiger Sauce.</p>
+            <p class="dish-allerg">Allergene: G · M · SF</p>
+            <div class="dish-foot"><span class="dish-price">6,50 €</span><button class="add-btn" data-add aria-label="Hähnchen Döner in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="dueruem" data-name="Dürüm" data-price="7.00">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Dürüm</span></div>
+            <p class="dish-desc">Fleisch, Salat und Sauce fest eingerollt im dünnen Yufka-Teigfladen.</p>
+            <p class="dish-allerg">Allergene: G · M · SF</p>
+            <div class="dish-foot"><span class="dish-price">7,00 €</span><button class="add-btn" data-add aria-label="Dürüm in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="veggie-doener" data-name="Vegetarischer Döner" data-price="6.00">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Vegetarischer Döner</span><span class="tag veg">Vegetarisch</span></div>
+            <p class="dish-desc">Gegrilltes Gemüse und Falafel mit Salat und cremiger Sesam-Sauce.</p>
+            <p class="dish-allerg">Allergene: G · SE</p>
+            <div class="dish-foot"><span class="dish-price">6,00 €</span><button class="add-btn" data-add aria-label="Vegetarischer Döner in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div id="tab-boxen" class="menu-panel" role="tabpanel" aria-labelledby="btn-boxen">
+      <div class="dish-grid">
+        <article class="dish" data-id="doener-box" data-name="Döner Box mit Fleisch" data-price="7.50">
+          <div class="dish-popular-band">★ Beliebt</div>
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Döner Box mit Fleisch</span><span class="tag xl">XL</span></div>
+            <p class="dish-desc">Goldene Pommes, reichlich Fleisch, frischer Salat und Sauce — in der gebrandeten Serra-Box.</p>
+            <p class="dish-allerg">Allergene: G · M</p>
+            <div class="dish-foot"><span class="dish-price">7,50 €</span><button class="add-btn" data-add aria-label="Döner Box mit Fleisch in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="doenerteller" data-name="Dönerteller" data-price="9.90">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Dönerteller</span><span class="tag xl">XL</span></div>
+            <p class="dish-desc">Große Portion Fleisch mit Reis oder Pommes, frischem Salat und Sauce nach Wahl.</p>
+            <p class="dish-allerg">Allergene: M · SF</p>
+            <div class="dish-foot"><span class="dish-price">9,90 €</span><button class="add-btn" data-add aria-label="Dönerteller in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="pommes-box" data-name="Pommes Box überbacken" data-price="4.90">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Pommes Box überbacken</span></div>
+            <p class="dish-desc">Knusprige Pommes mit geschmolzenem Käse und Sauce nach Wahl.</p>
+            <p class="dish-allerg">Allergene: G · M</p>
+            <div class="dish-foot"><span class="dish-price">4,90 €</span><button class="add-btn" data-add aria-label="Pommes Box überbacken in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div id="tab-burger" class="menu-panel" role="tabpanel" aria-labelledby="btn-burger">
+      <div class="dish-grid">
+        <article class="dish" data-id="serra-burger" data-name="Serra Burger" data-price="8.50">
+          <div class="dish-popular-band">★ Beliebt</div>
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Serra Burger</span><span class="tag xl">XL</span></div>
+            <p class="dish-desc">Doppelt Fleisch, Käse, frischer Salat und hausgemachte Serra-Sauce im Sesam-Bun.</p>
+            <p class="dish-allerg">Allergene: G · M · E · SE</p>
+            <div class="dish-foot"><span class="dish-price">8,50 €</span><button class="add-btn" data-add aria-label="Serra Burger in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="cheeseburger" data-name="Cheeseburger" data-price="5.90">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Cheeseburger</span></div>
+            <p class="dish-desc">Saftiges Rindfleisch mit Käse, Gurke und Zwiebeln.</p>
+            <p class="dish-allerg">Allergene: G · M · E</p>
+            <div class="dish-foot"><span class="dish-price">5,90 €</span><button class="add-btn" data-add aria-label="Cheeseburger in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="chicken-burger" data-name="Chicken Burger" data-price="6.50">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Chicken Burger</span></div>
+            <p class="dish-desc">Knuspriges Hähnchenfilet mit Salat und cremiger Mayo.</p>
+            <p class="dish-allerg">Allergene: G · M · E</p>
+            <div class="dish-foot"><span class="dish-price">6,50 €</span><button class="add-btn" data-add aria-label="Chicken Burger in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div id="tab-veggie" class="menu-panel" role="tabpanel" aria-labelledby="btn-veggie">
+      <div class="dish-grid">
+        <article class="dish" data-id="falafel-dueruem" data-name="Falafel Dürüm" data-price="6.50">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Falafel Dürüm</span><span class="tag veg">Vegan</span></div>
+            <p class="dish-desc">Knusprige Falafel mit Salat und Sesam-Sauce, eingerollt im Yufka.</p>
+            <p class="dish-allerg">Allergene: G · SE</p>
+            <div class="dish-foot"><span class="dish-price">6,50 €</span><button class="add-btn" data-add aria-label="Falafel Dürüm in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="falafel-box" data-name="Falafel Box" data-price="6.90">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Falafel Box</span><span class="tag veg">Vegan</span></div>
+            <p class="dish-desc">Falafel auf Pommes mit frischem Salat und Sauce in der Serra-Box.</p>
+            <p class="dish-allerg">Allergene: G · SE</p>
+            <div class="dish-foot"><span class="dish-price">6,90 €</span><button class="add-btn" data-add aria-label="Falafel Box in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="pommes" data-name="Pommes frites" data-price="3.50">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Pommes frites</span><span class="tag veg">Vegan</span></div>
+            <p class="dish-desc">Goldknusprig frittiert, mit Ketchup oder Mayo.</p>
+            <div class="dish-foot"><span class="dish-price">3,50 €</span><button class="add-btn" data-add aria-label="Pommes frites in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="salatteller" data-name="Salatteller" data-price="5.50">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Salatteller</span><span class="tag veg">Vegetarisch</span></div>
+            <p class="dish-desc">Großer frischer Salat mit Dressing nach Wahl.</p>
+            <p class="dish-allerg">Allergene: SF</p>
+            <div class="dish-foot"><span class="dish-price">5,50 €</span><button class="add-btn" data-add aria-label="Salatteller in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div id="tab-drinks" class="menu-panel" role="tabpanel" aria-labelledby="btn-drinks">
+      <div class="dish-grid">
+        <article class="dish" data-id="ayran" data-name="Ayran 0,25 l" data-price="1.50">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Ayran 0,25 l</span></div>
+            <p class="dish-desc">Erfrischendes türkisches Joghurtgetränk, gut gekühlt.</p>
+            <p class="dish-allerg">Allergene: M</p>
+            <div class="dish-foot"><span class="dish-price">1,50 €</span><button class="add-btn" data-add aria-label="Ayran in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="softdrink" data-name="Cola · Fanta 0,33 l" data-price="2.00">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Cola · Fanta 0,33 l</span></div>
+            <p class="dish-desc">Eiskalt aus der Flasche.</p>
+            <div class="dish-foot"><span class="dish-price">2,00 €</span><button class="add-btn" data-add aria-label="Cola oder Fanta in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="uludag" data-name="Uludağ 0,33 l" data-price="2.20">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Uludağ 0,33 l</span></div>
+            <p class="dish-desc">Türkische Limonade, spritzig und süß.</p>
+            <div class="dish-foot"><span class="dish-price">2,20 €</span><button class="add-btn" data-add aria-label="Uludağ in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+        <article class="dish" data-id="wasser" data-name="Wasser 0,5 l" data-price="1.50">
+          <div class="dish-body">
+            <div class="dish-head"><span class="dish-name">Wasser 0,5 l</span></div>
+            <p class="dish-desc">Still oder mit Kohlensäure.</p>
+            <div class="dish-foot"><span class="dish-price">1,50 €</span><button class="add-btn" data-add aria-label="Wasser in den Warenkorb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Warenkorb</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <details class="menu-legend">
+      <summary>Allergene &amp; Kennzeichnung</summary>
+      <p>
+        <strong>E</strong> Eier · <strong>G</strong> glutenhaltiges Getreide · <strong>M</strong> Milch/Laktose ·
+        <strong>SE</strong> Sesam · <strong>SF</strong> Senf
+      </p>
+      <p>Die vollständige Liste aller Allergene und Zusatzstoffe gemäß LMIV bekommst du jederzeit an der Theke oder am Telefon. Bei Unverträglichkeiten beraten wir dich gern persönlich.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ABOUT / HERITAGE -->
+<section id="ueber-uns" class="about" aria-label="Über uns">
+  <div class="about-inner">
+    <div class="about-photo" aria-hidden="true">
+      <div>
+        <div class="ph-stamp">Zekai am Spieß</div>
+        <div class="ph-note">Platz für ein echtes Foto vom Inhaber &amp; Team</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="label">Wir über uns</span>
+      <h2 class="display">Seit 2005 dein Döner in Clausthal</h2>
+      <p>Angefangen hat alles mit einer verrückten Idee: 2005 ging Serra als <b style="color:var(--yellow)">erster Online-Döner der Welt</b> ans Netz — lange bevor „Essen bestellen per Klick" normal war. Gegründet und bis heute geführt von Zekai Ayvaz.</p>
+      <p>Was gleich geblieben ist: ehrliches Fleisch frisch vom Drehspieß, große Portionen, faire Preise und die persönliche Note hinter dem Tresen. Bei uns bist du kein Gast von vielen — bei uns bist du willkommen.</p>
+      <blockquote class="owner-quote">„Es war uns eine Ehre, Sie zu bedienen."</blockquote>
+      <p class="owner-name">— <b>Zekai Ayvaz</b>, Inhaber</p>
+      <div class="about-stats">
+        <div class="about-stat"><div class="num">2005</div><div class="cap">Online seit</div></div>
+        <div class="about-stat"><div class="num">4,5&nbsp;★</div><div class="cap">1.089 Bewertungen</div></div>
+        <div class="about-stat"><div class="num">2</div><div class="cap">Standorte</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section id="standorte" aria-label="Standorte und Öffnungszeiten">
+  <div class="section">
+    <div class="section-head">
+      <span class="label">Standorte</span>
+      <h2 class="display">Zweimal Serra in Clausthal-Zellerfeld</h2>
+    </div>
+    <div class="loc-switch" role="tablist" aria-label="Standort wählen">
+      <button class="active" id="loc-btn-clausthal" role="tab" aria-selected="true" aria-controls="loc-clausthal" data-loc="loc-clausthal">Clausthal</button>
+      <button id="loc-btn-zellerfeld" role="tab" aria-selected="false" tabindex="-1" aria-controls="loc-zellerfeld" data-loc="loc-zellerfeld">Zellerfeld</button>
+    </div>
+
+    <div id="loc-clausthal" class="loc-panel active" role="tabpanel" aria-labelledby="loc-btn-clausthal">
+      <div class="loc-block">
+        <h3>Serra Imbiss · Clausthal</h3>
+        <p class="loc-tagline">Unser Stammhaus — hier isst du vor Ort oder holst frisch ab.</p>
+        <div class="loc-contact">
+          <div class="loc-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <div class="loc-item-body">Osteröder Str. 4A<br>38678 Clausthal-Zellerfeld</div>
+          </div>
+          <div class="loc-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            <div class="loc-item-body"><a href="tel:+495323715350">05323 715350</a></div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Serra+Imbiss,+Oster%C3%B6der+Str.+4A,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer" class="btn btn-ghost loc-btn">Route planen</a>
+      </div>
+      <div class="loc-block">
+        <h4 class="sr-only">Öffnungszeiten Clausthal</h4>
+        <table class="hours-tbl">
+          <tbody>
+            <tr data-day="1"><td>Montag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="2"><td>Dienstag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="3"><td>Mittwoch</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="4"><td>Donnerstag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="5"><td>Freitag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="6"><td>Samstag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="0"><td>Sonntag</td><td>11:15 – 21:30</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="loc-zellerfeld" class="loc-panel" role="tabpanel" aria-labelledby="loc-btn-zellerfeld" hidden>
+      <div class="loc-block">
+        <h3>Serra · Lieferküche Zellerfeld</h3>
+        <p class="loc-tagline">Unsere jüngere Filiale am Brauhausberg — von hier liefern wir zu dir.</p>
+        <div class="loc-contact">
+          <div class="loc-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <div class="loc-item-body">Brauhausberg<br>38678 Clausthal-Zellerfeld<br><span class="loc-placeholder">Genaue Hausnummer trägt der Betreiber ein.</span></div>
+          </div>
+          <div class="loc-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            <div class="loc-item-body"><a href="tel:+495323715350">05323 715350</a><br><span class="loc-placeholder">Eigene Nummer der Lieferfiliale ggf. ergänzen.</span></div>
+          </div>
+        </div>
+        <a href="tel:+495323715350" class="btn btn-ghost loc-btn">Lieferung anfragen</a>
+      </div>
+      <div class="loc-block">
+        <h4 class="sr-only">Öffnungszeiten Zellerfeld</h4>
+        <table class="hours-tbl">
+          <tbody>
+            <tr data-day="1"><td>Montag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="2"><td>Dienstag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="3"><td>Mittwoch</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="4"><td>Donnerstag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="5"><td>Freitag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="6"><td>Samstag</td><td>11:15 – 21:30</td></tr>
+            <tr data-day="0"><td>Sonntag</td><td>11:15 – 21:30</td></tr>
+          </tbody>
+        </table>
+        <p class="loc-placeholder" style="margin-top:1rem">Abweichende Lieferzeiten trägt der Betreiber hier ein.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER BAND -->
+<section class="band" aria-label="Jetzt bestellen">
+  <h2 class="display">Schnell was Leckeres auf die Hand</h2>
+  <p>Stell dir online deine Bestellung zusammen — abschließen mit einem Anruf.</p>
+  <a href="tel:+495323715350" class="btn">Jetzt anrufen: 05323 715350</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="wordmark">Serra<sup>®</sup></span>
+      <p>Der erste Online-Döner der Welt — seit 2005 in Clausthal-Zellerfeld. Echter Döner, echte Leute.</p>
+      <a class="rating" href="https://maps.google.com/?q=Serra+Imbiss,+Oster%C3%B6der+Str.+4A,+38678+Clausthal-Zellerfeld" target="_blank" rel="noopener noreferrer"><span class="stars" aria-hidden="true"><span class="fill"></span></span> 4,5 · 1.089 Bewertungen</a>
+    </div>
+    <div class="footer-col">
+      <h4>Clausthal</h4>
+      <p>Osteröder Str. 4A<br>38678 Clausthal-Zellerfeld</p>
+      <a href="tel:+495323715350">05323 715350</a>
+      <p>Täglich 11:15 – 21:30</p>
+    </div>
+    <div class="footer-col">
+      <h4>Entdecken</h4>
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#standorte">Standorte</a>
+      <a href="tel:+495323715350">Bestellen</a>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <div class="footer-legal-inner">
+      <details id="impressum">
+        <summary>Impressum</summary>
+        <div class="footer-legal-body">
+          <p><strong>Angaben gemäß § 5 DDG</strong></p>
+          <p>Serra Imbiss · Inhaber Zekai Ayvaz<br>Osteröder Str. 4A<br>38678 Clausthal-Zellerfeld<br>Telefon: 05323 715350</p>
+          <p>[Vom Betreiber zu ergänzen: vollständige Firmierung mit Rechtsform, E-Mail-Adresse, ggf. Handelsregister und Registernummer, Umsatzsteuer-Identifikationsnummer, zuständige Aufsichtsbehörde.]</p>
+        </div>
+      </details>
+      <details id="datenschutz">
+        <summary>Datenschutzerklärung</summary>
+        <div class="footer-legal-body">
+          <p>Diese Website verwendet keine Cookies, keine Analyse-Dienste und keine extern geladenen Schriftarten. Der Warenkorb wird ausschließlich lokal in deinem Browser verarbeitet und nicht übertragen. Beim Aufruf werden durch den Hosting-Anbieter technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt des Abrufs) verarbeitet.</p>
+          <p>Links zu Google Maps öffnen den externen Dienst erst nach deinem Klick; dabei gelten die Datenschutzbestimmungen von Google.</p>
+          <p>[Vom Betreiber zu ergänzen: verantwortliche Stelle mit Kontaktdaten, Hosting-Anbieter, Angaben zu Betroffenenrechten nach DSGVO.]</p>
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year">2026</span> Serra Imbiss · Clausthal-Zellerfeld · Der erste Online-Döner der Welt, seit 2005.</div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+  <div class="cart-header">
+    <h2 id="cart-title">Dein Warenkorb</h2>
+    <button class="cart-close" id="cart-close" aria-label="Warenkorb schließen">✕</button>
+  </div>
+  <ul class="cart-items" id="cart-items" aria-live="polite"></ul>
+  <div class="cart-empty" id="cart-empty">Noch nichts drin — leg direkt los und füll deine Serra-Box.</div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span>Summe</span><span class="cart-total" id="cart-total">0,00 €</span></div>
+    <div class="cart-actions">
+      <a href="tel:+495323715350" class="btn btn-primary" id="cart-call">Anrufen &amp; bestellen</a>
+      <button class="btn btn-copy" id="cart-copy" type="button">Bestellung kopieren</button>
+    </div>
+    <p class="cart-note">Der Warenkorb hilft dir, deine Bestellung zusammenzustellen. Abschluss, Bezahlung und Abholung/Lieferung klärst du direkt beim Anruf. Alle Preise inkl. MwSt.</p>
+  </div>
+</aside>
+
+<!-- MOBILE STICKY BAR -->
+<div class="mobile-bar" aria-label="Schnellzugriff">
+  <a class="m-menu" href="#speisekarte">Speisekarte</a>
+  <button class="m-cart" id="mobile-cart-open" aria-haspopup="dialog" aria-controls="cart-drawer">
+    Warenkorb <span class="cart-count" id="cart-count-mobile" aria-hidden="true">0</span>
+  </button>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Serra Imbiss",
+  "servesCuisine": ["Döner", "Türkisch", "Burger", "Fast Food"],
+  "priceRange": "€",
+  "slogan": "Der erste Online-Döner der Welt, seit 2005.",
+  "foundingDate": "2005",
+  "telephone": "+49 5323 715350",
+  "url": "https://serra-doener.de",
+  "hasMenu": "#speisekarte",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Osteröder Str. 4A",
+    "postalCode": "38678",
+    "addressLocality": "Clausthal-Zellerfeld",
+    "addressCountry": "DE"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "11:15", "closes": "21:30"
+    }
+  ]
+}
+</script>
+<script>
+/* ── YEAR ───────────────────────────────────────────────────────────── */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── HEADER SHADOW ON SCROLL ────────────────────────────────────────── */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 8);
+}, { passive: true });
+
+/* ── MOBILE MENU ────────────────────────────────────────────────────── */
+(function () {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    menu.classList.toggle('open', open);
+  }
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) { setOpen(false); toggle.focus(); }
+  });
+})();
+
+/* ── MENU TABS ──────────────────────────────────────────────────────── */
+(function () {
+  const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+  function activate(btn, focus) {
+    tabs.forEach(b => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.toggle('active', p.id === btn.dataset.target));
+    if (focus) btn.focus();
+  }
+  tabs.forEach((btn, i) => {
+    btn.addEventListener('click', () => activate(btn, false));
+    btn.addEventListener('keydown', e => {
+      let next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); activate(next, true); }
+    });
+  });
+})();
+
+/* ── LOCATION SWITCHER ──────────────────────────────────────────────── */
+(function () {
+  const btns = Array.from(document.querySelectorAll('.loc-switch button'));
+  function activate(btn, focus) {
+    btns.forEach(b => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+    document.querySelectorAll('.loc-panel').forEach(p => {
+      const on = p.id === btn.dataset.loc;
+      p.classList.toggle('active', on);
+      p.hidden = !on;
+    });
+    if (focus) btn.focus();
+  }
+  btns.forEach((btn, i) => {
+    btn.addEventListener('click', () => activate(btn, false));
+    btn.addEventListener('keydown', e => {
+      let next = null;
+      if (e.key === 'ArrowRight') next = btns[(i + 1) % btns.length];
+      else if (e.key === 'ArrowLeft') next = btns[(i - 1 + btns.length) % btns.length];
+      if (next) { e.preventDefault(); activate(next, true); }
+    });
+  });
+})();
+
+/* ── TODAY HIGHLIGHT ────────────────────────────────────────────────── */
+(function () {
+  const today = new Date().getDay();
+  document.querySelectorAll(`.hours-tbl tr[data-day="${today}"]`).forEach(r => r.classList.add('today'));
+})();
+
+/* ── DYNAMISCHER ÖFFNUNGSSTATUS (Clausthal) ─────────────────────────── */
+(function () {
+  const HOURS = { 0: [[11.25, 21.5]], 1: [[11.25, 21.5]], 2: [[11.25, 21.5]], 3: [[11.25, 21.5]], 4: [[11.25, 21.5]], 5: [[11.25, 21.5]], 6: [[11.25, 21.5]] };
+  const DAYS = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  const pill = document.getElementById('open-status');
+  const label = document.getElementById('open-status-text');
+  if (!pill || !label) return;
+  const now = new Date();
+  const day = now.getDay();
+  const t = now.getHours() + now.getMinutes() / 60;
+  const spans = HOURS[day];
+  const fmt = h => `${String(Math.floor(h)).padStart(2,'0')}:${String(Math.round((h % 1) * 60)).padStart(2,'0')}`;
+  function nextOpen() {
+    for (let i = 1; i <= 7; i++) { const d = (day + i) % 7; if (HOURS[d] && HOURS[d].length) { return `Öffnet ${i === 1 ? 'morgen' : 'am ' + DAYS[d]} um ${fmt(HOURS[d][0][0])} Uhr`; } }
+    return '';
+  }
+  let text = '', open = false;
+  const cur = spans && spans.find(([a, b]) => t >= a && t < b);
+  if (cur) { open = true; text = `Jetzt geöffnet · 11:15 – 21:30`; }
+  else { const up = spans && spans.find(([a]) => t < a); text = up ? `Öffnet heute um ${fmt(up[0])} Uhr` : nextOpen(); }
+  label.textContent = text;
+  pill.classList.toggle('closed', !open);
+})();
+
+/* ── WARENKORB ──────────────────────────────────────────────────────── */
+(function () {
+  const cart = new Map(); // id -> {name, price, qty}
+  const drawer = document.getElementById('cart-drawer');
+  const overlay = document.getElementById('cart-overlay');
+  const itemsEl = document.getElementById('cart-items');
+  const emptyEl = document.getElementById('cart-empty');
+  const totalEl = document.getElementById('cart-total');
+  const counts = [document.getElementById('cart-count'), document.getElementById('cart-count-mobile')];
+  const callBtn = document.getElementById('cart-call');
+  const copyBtn = document.getElementById('cart-copy');
+  let lastFocus = null;
+
+  const eur = n => n.toFixed(2).replace('.', ',') + ' €';
+
+  function render() {
+    let count = 0, total = 0;
+    itemsEl.textContent = '';
+    cart.forEach((it, id) => {
+      count += it.qty; total += it.qty * it.price;
+      const li = document.createElement('li');
+      li.className = 'cart-line';
+      li.innerHTML =
+        '<div class="cart-line-info"><div class="cart-line-name"></div><div class="cart-line-price"></div></div>' +
+        '<div class="stepper"><button type="button" data-dec aria-label="Weniger">−</button>' +
+        '<span class="qty"></span>' +
+        '<button type="button" data-inc aria-label="Mehr">+</button></div>' +
+        '<span class="cart-line-sum"></span>';
+      li.querySelector('.cart-line-name').textContent = it.name;
+      li.querySelector('.cart-line-price').textContent = eur(it.price) + ' / Stück';
+      li.querySelector('.qty').textContent = it.qty;
+      li.querySelector('.cart-line-sum').textContent = eur(it.qty * it.price);
+      li.querySelector('[data-dec]').addEventListener('click', () => { setQty(id, it.qty - 1); });
+      li.querySelector('[data-inc]').addEventListener('click', () => { setQty(id, it.qty + 1); });
+      itemsEl.appendChild(li);
+    });
+    totalEl.textContent = eur(total);
+    emptyEl.style.display = cart.size ? 'none' : '';
+    counts.forEach(c => { if (c) { c.textContent = count; c.classList.toggle('show', count > 0); } });
+    copyBtn.disabled = !cart.size;
+    copyBtn.style.opacity = cart.size ? '1' : '0.5';
+  }
+  function add(id, name, price) {
+    const it = cart.get(id);
+    if (it) it.qty++; else cart.set(id, { name, price, qty: 1 });
+    render();
+  }
+  function setQty(id, n) {
+    const it = cart.get(id); if (!it) return;
+    if (n <= 0) cart.delete(id); else it.qty = n;
+    render();
+  }
+  function openCart() {
+    lastFocus = document.activeElement;
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.getElementById('cart-close').focus();
+  }
+  function closeCart() {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    if (lastFocus) lastFocus.focus();
+  }
+  function orderText() {
+    let lines = ['Meine Serra-Bestellung:'];
+    cart.forEach(it => lines.push(`${it.qty}× ${it.name} — ${eur(it.qty * it.price)}`));
+    let total = 0; cart.forEach(it => total += it.qty * it.price);
+    lines.push(`Summe: ${eur(total)}`);
+    return lines.join('\n');
+  }
+
+  document.querySelectorAll('[data-add]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('[data-id]');
+      add(card.dataset.id, card.dataset.name, parseFloat(card.dataset.price));
+      const orig = btn.innerHTML;
+      btn.classList.add('added');
+      btn.innerHTML = '✓ Hinzugefügt';
+      setTimeout(() => { btn.classList.remove('added'); btn.innerHTML = orig; }, 1100);
+    });
+  });
+  document.getElementById('cart-open').addEventListener('click', openCart);
+  document.getElementById('mobile-cart-open').addEventListener('click', openCart);
+  document.getElementById('cart-close').addEventListener('click', closeCart);
+  overlay.addEventListener('click', closeCart);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('open')) closeCart(); });
+  copyBtn.addEventListener('click', () => {
+    if (!cart.size) return;
+    const txt = orderText();
+    const done = () => { const o = copyBtn.textContent; copyBtn.textContent = '✓ Kopiert!'; setTimeout(() => copyBtn.textContent = o, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done).catch(done);
+    else done();
+  });
+  render();
+})();
+</script>
+
+</body>
+</html>
